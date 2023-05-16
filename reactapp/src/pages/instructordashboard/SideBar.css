@@ -1,0 +1,125 @@
+.sidebar-container{
+    display: flex;
+    width: 50px;
+    margin-bottom: 35px;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+}
+.sidebar-buttoncontainer{
+  margin-top: 30px;
+  gap: 10px;
+}
+/*navigationbar css */
+.nav {
+    
+    background: #ffffff;
+    height: 0px;
+    display: flex;
+    width: 0px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+  }
+
+  .nav-icon {
+    margin-left: 0srem;
+    font-size: 2rem;
+    height: 30px;
+    display: flex;
+    width: 50px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+  }
+  
+  
+  .sidebar-nav {
+    
+    background: white;
+    width: 125px;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    transition: 350ms;
+    z-index: 10;
+  }
+  
+  .sidebar-nav.active {
+    left: 0;
+    
+  }
+  
+  .sidebar-wrap {
+    margin-top: 70px;
+    background-color: rgb(17,22,67);
+    width: 100%;
+  }
+  
+  
+  .sidebar-wrap button {
+
+    font: status-bar;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 125px;
+    height: 70px;
+    margin-bottom:2px;
+    border:  rgb(17,22,67);
+    font-size: 18px;
+    color: white;
+    background-color: rgb(17,22,67);
+    cursor: pointer;
+  }
+  .sidebar-wrap button.clicked {
+    color: white;
+    background: linear-gradient(to right, rgb(52, 86, 225), rgb(23, 30, 98));
+  }
+  
+  .sidebar-wrap button:hover,
+  .sidebar-wrap button:focus,
+  .sidebar-wrap button:active
+  {
+    color: white;
+    background: linear-gradient(to right, rgb(52, 86, 225), rgb(23, 30, 98));
+  }
+.sidebar-backbutton{
+  display: flex;
+  justify-content : flex-end;
+  align-items: center
+}
+@media only screen and (min-width:660px) {
+  .sidebar-nav {
+    background: rgb(17,22,67);
+    left: 0px;
+    width: 125px;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    position: fixed;
+  }
+  
+  .sidebar-nav.active {
+    left: 0px;
+    
+  }
+  
+  .sidebar-wrap {
+    
+    background-color: rgb(17,22,67);
+    width: 100%;
+  }
+  .nav-icon {
+    margin-left: 0rem;
+    font-size: 0rem;
+    height: 0px;
+ 
+    width: 0px;
+ 
+    
+  }
+  
+}
+  
