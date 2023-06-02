@@ -25,7 +25,7 @@ public class CourseController {
     }
     @PostMapping("/courses")
     public Course saveCourse(@RequestBody Course course){
-        return courseService.savecourses(course); 
+        return courseService.saveCourse(course); 
     }
     @GetMapping("/courses/{courseId}")
     public Optional<Course> courseById(@PathVariable int courseId){

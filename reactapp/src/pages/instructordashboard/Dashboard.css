@@ -9,10 +9,12 @@
   
   
   .content-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
     margin-top: 15px;
     background-color: rgb(247,249,252);
     width: calc(100% - 125px);
-    flex: 1;
   }
   
   .dashboard-side-nav{

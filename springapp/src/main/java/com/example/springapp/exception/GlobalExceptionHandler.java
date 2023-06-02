@@ -36,4 +36,12 @@ public class GlobalExceptionHandler {
         String message=e.getMessage();
         return new ResponseEntity<>(message,HttpStatus.BAD_REQUEST);
     }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CourseAlreadyExistException.class)
+public ResponseEntity<String> handleCourseAlreadyExistException(CourseAlreadyExistException e) {
+    String message = e.getMessage();
+    return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+}
+
+    
 }

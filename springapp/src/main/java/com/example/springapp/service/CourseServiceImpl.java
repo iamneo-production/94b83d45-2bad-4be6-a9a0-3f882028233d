@@ -5,6 +5,7 @@ import com.example.springapp.repository.CourseRepo;
 import com.example.springapp.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.springapp.exception.*;
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
@@ -13,10 +14,14 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> cousre() {
         return courseRepo.findAll();
     }
-
-    public Course savecourses(Course course) {
-        return courseRepo.save(course);
-    }
+    @Override
+    public Course saveCourse(Course course) {
+        Optional<Course> existingCourse = courseRepo.findById(course.getId());
+        if (existingCourse.isEmpty()) {
+            return courseRepo.save(course);
+        }
+        throw new CourseAlreadyExistException("Course Id Already Exists");
+    }    
 
     @Override
     public Optional<Course> getCourseById(int courseId) {

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './CreateCourse.css';
 import axios from 'axios';
 
 
 function AddCourse({setIsCreateCourse}) {
+  const [errormessage,setErrorMessage]=useState("");
 
   const [data, setData] = useState({
     "id": "",
@@ -28,10 +29,22 @@ function AddCourse({setIsCreateCourse}) {
     alert("created successfully")
     setIsCreateCourse(false);
   }catch(error){
+    if(error.response && error.response.data){
+      setErrorMessage(error.response.data)
+    }
     console.log(error)}
     }
     postData();
   }
+  useEffect(()=>{
+    if(errormessage){
+      const timeout=setTimeout(() => {
+        setErrorMessage("")
+      }, 3000);
+      return ()=>clearTimeout(timeout)
+    }
+    
+  },[errormessage])
 
   return (
     <div className="createcourse-maincontainer">
@@ -42,6 +55,7 @@ function AddCourse({setIsCreateCourse}) {
         
         <form className="createcourse-form-container" onSubmit={Handlecreatecourse}>
         <div>
+          {errormessage && <h3 style={{ color: 'red' }}>{errormessage}</h3>}
             <label>Course Id</label>
             <input
               type="text"
