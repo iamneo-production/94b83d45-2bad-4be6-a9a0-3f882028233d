@@ -6,6 +6,8 @@ import Service from "./routes/Service";
 import About from "./routes/About";
 import SignUp from "./routes/SignUp";
 import LogIn from "./routes/LogIn";
+import Dashboard from "./pages/instructordashboard/Dashboard";
+import CourseDetails from "./pages/instructordashboard/CourseDetails";
 
 
 function App() {
