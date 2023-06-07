@@ -7,6 +7,8 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import NavBar from './NavBar';
 import UpdateCourse from "./UpdateCourse";
+import BASE_URL from "../../api/axios";
+import SearchBar from './SearchBar';
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
 
@@ -70,7 +72,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${courseId}`)
+        const response = await axios.get(`${BASE_URL}courses/${courseId}`)
         setDetails(response.data);
       }
       catch (error) {
@@ -111,6 +113,7 @@ function CourseDetails() {
           setEnrolledStudents={setEnrolledStudents}
           setUpdateCourse={setUpdateCourse}
           navigate={navigate} />
+        <SearchBar />
         <NavBar />
 
       </div>

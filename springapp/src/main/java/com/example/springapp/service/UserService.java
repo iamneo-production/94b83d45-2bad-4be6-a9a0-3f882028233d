@@ -1,5 +1,6 @@
 package com.example.springapp.service;
 import com.example.springapp.model.User;
+import java.util.*;
 public interface UserService{
-    public User registerUser( User user);
+    public Map<String,String> getUserDetails(int id);
 }
