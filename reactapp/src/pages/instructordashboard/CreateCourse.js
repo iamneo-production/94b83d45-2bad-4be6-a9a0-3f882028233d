@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import './CreateCourse.css';
 import axios from 'axios';
-
+import BASE_URL from '../../api/axios';
 
 function AddCourse({setIsCreateCourse}) {
   const [errormessage,setErrorMessage]=useState("");
@@ -20,7 +20,7 @@ function AddCourse({setIsCreateCourse}) {
     event.preventDefault();
     const postData=async()=>{
     try{
-    await axios.post('https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses', data, {
+    await axios.post(`${BASE_URL}courses`, data, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -102,7 +102,7 @@ function AddCourse({setIsCreateCourse}) {
 
           <div className="createcourse-buttons-container">
             <div>
-              <button  type="submit">Submit</button>
+              <button className='{disabled} ' type="submit" disabled={!data.id || !data.title || !data.description}>Submit</button>
             </div>
             <div>
               <button

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './CreateCourse.css';
 import axios from 'axios';
+import BASE_URL from '../../api/axios';
 
 function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
 
@@ -12,7 +13,7 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
   useEffect(() => {
     const fetchData=async()=>{
       try {
-       const response = await axios.get(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${courseId}`)
+       const response = await axios.get(`${BASE_URL}courses/${courseId}`)
         setData(response.data);
       }catch(error){
         console.log(error)}
@@ -24,7 +25,7 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
     event.preventDefault();
     const putData=async()=>{
       try{
-      await  axios.put(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${data.id}`, data,)
+      await  axios.put(`${BASE_URL}courses/${data.id}`, data,)
       alert("Updated successfully")
       setUpdateCourse(false);
       setThisCourse(true);

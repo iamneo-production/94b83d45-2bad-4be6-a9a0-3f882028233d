@@ -6,6 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,10 +39,18 @@ public class GlobalExceptionHandler {
     }
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(CourseAlreadyExistException.class)
-public ResponseEntity<String> handleCourseAlreadyExistException(CourseAlreadyExistException e) {
-    String message = e.getMessage();
-    return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-}
+    public ResponseEntity<String> handleCourseAlreadyExistException(CourseAlreadyExistException e) {
+        String message = e.getMessage();
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ResponseEntity<String> handleUsernameNotFoundException(UsernameNotFoundException e) {
+        String message = e.getMessage();
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
 
     
 }

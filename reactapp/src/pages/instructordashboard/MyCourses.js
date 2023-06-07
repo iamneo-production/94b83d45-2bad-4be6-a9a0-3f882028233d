@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import "./MyCourses.css"
+import BASE_URL from '../../api/axios';
 function MyCourses({setIsCreateCourse,setIsMyCourses}) {
   const [courses, setCourses] = useState([]);
   const navigate=useNavigate()
@@ -10,7 +11,7 @@ function MyCourses({setIsCreateCourse,setIsMyCourses}) {
   useEffect(() => {
     const fetchData=async()=>{
       try{
-    const response=await axios.get('https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses')
+    const response=await axios.get(`${BASE_URL}courses`)
     setCourses(response.data);
       }catch(error){
         console.error(error);

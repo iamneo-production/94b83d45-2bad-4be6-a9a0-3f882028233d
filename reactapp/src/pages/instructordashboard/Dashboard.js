@@ -12,6 +12,7 @@ import NavBar from './NavBar';
 import './NavBar.css'
 import ShowResults from './ShowResults';
 import Welcome from './Welcome'
+import BASE_URL from '../../api/axios';
 
 
 const Sidebar = ({ ismycourses, iscreatecourse, setIsCreateCourse, setIsMyCourses, setIsSearch }) => {
@@ -76,7 +77,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses');
+        const response = await axios.get(`${BASE_URL}courses`);
         setData(response.data);
       } catch (error) {
         console.error(error);
