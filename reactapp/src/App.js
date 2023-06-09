@@ -8,7 +8,9 @@ import SignUp from "./routes/SignUp";
 import LogIn from "./routes/LogIn";
 import Dashboard from "./pages/instructordashboard/Dashboard";
 import CourseDetails from "./pages/instructordashboard/CourseDetails";
-import LessonPage from './pages/lessonPages/LessonPage';
+import LessonPage from './lessonPages/LessonPage';
+import InstructorDashboard from './pages/instructordashboard/lessonPage/InstructorDashboard'
+import LessonFormMain from './pages/instructordashboard/lessonPage/LessonFormMain'
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <Route path="/signin" element={<LogIn/>}/>
         <Route path="/instructor" element={<Dashboard />}/>
         <Route path="/instructor/courses/:courseId" element={<CourseDetails />} />
-        <Route path='lessonpage' element={<LessonPage />} />
+        <Route path='/lessonpage' element={<LessonPage />} />
+        <Route path='/dashboard' element={<InstructorDashboard />} />
+        <Route path='/lessonform' element={<LessonFormMain />} />
       </Routes>
     </div>
   );

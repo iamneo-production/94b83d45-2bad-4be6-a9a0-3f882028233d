@@ -50,10 +50,11 @@ function AssignmentsForm() {
                                 }
                             }} />
 
+
                             {
-                                File &&
-                                    ((File.type === "application/pdf") &&
-                                        (<div className='flex-col flex items-center'>
+                                File ?
+                                    (File.type === "application/pdf") ?
+                                        <div className='flex-col flex items-center'>
                                             <span>
                                                 <img src="pdf.ico" className='h-40 w-40' />
                                             </span>
@@ -61,9 +62,9 @@ function AssignmentsForm() {
                                             <p className='w-24 truncate'>
                                                 {fileName}
                                             </p>
-                                        </div>)
-                                    (File.type === "application/doc") &&     
-                                        (<div className='flex-col flex items-center'>
+                                        </div>
+                                        :
+                                        <div className='flex-col flex items-center'>
                                             <span>
                                                 <img src="docs.ico" className='h-40 w-40' />
                                             </span>
@@ -71,15 +72,15 @@ function AssignmentsForm() {
                                             <p className='w-24 truncate'>
                                                 {fileName}
                                             </p>
-                                        </div>))
-                                (!File) && (<div className='flex-col'>
+                                        </div>
+                                    : <div className='flex-col'>
                                         <span className='flex justify-center'>
                                             <FaFileUpload className='h-10 w-10' />
                                         </span>
                                         <span className='font-bold'>
                                             Browse Files to Upload
                                         </span>
-                                    </div>)
+                                    </div>
 
                             }
                         </form>
