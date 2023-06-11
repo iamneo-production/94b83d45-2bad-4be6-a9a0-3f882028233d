@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService{
     private UserRepo userRepo;
 
     @Autowired
-    private PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private AuthenticationManager authManager;
@@ -70,6 +70,7 @@ public class AuthServiceImpl implements AuthService{
         Map<String,Object> result=new HashMap<>();
         result.put("token",jwtToken);
         result.put("name", user.getFirstName()+" "+ user.getLastName());
+        result.put("id",user.getId());
         result.put("email",user.getEmail());
         result.put("role",user.getRole());
         return result;

@@ -1,5 +1,6 @@
 package com.example.springapp.model;
 import javax.persistence.*;
+import java.util.List;
 @Entity
 public class User{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -9,6 +10,9 @@ public class User{
     private String email;
     private String password;
     private String role;
+    @OneToMany(fetch =FetchType.EAGER, mappedBy="user")
+    //user refers the user attribute in the Enrollment entity
+    private List<Enrollment> enrollments;
     public User() {
     }
     public User(int id, String firstName, String lastName, String email, String password,String role) {
@@ -54,6 +58,12 @@ public class User{
     }
     public void setRole(String role) {
         this.role = role;
+    }
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }
 

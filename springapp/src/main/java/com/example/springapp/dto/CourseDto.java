@@ -1,9 +1,5 @@
-package com.example.springapp.model;
-import javax.persistence.*;
-import java.util.List;
-@Entity
-public class Course {
-    @Id
+package com.example.springapp.dto;
+public class CourseDto {
     private int id;
 
     private String title;
@@ -12,19 +8,14 @@ public class Course {
 
     private int instructorId;
 
-    @OneToMany(fetch =FetchType.EAGER, mappedBy="course")
-    //course refers the course attribute in the Enrollment entity
-    private List<Enrollment> enrollments;
-    
+    public CourseDto() {
+    }
 
-    public Course(int id, String title, String description, int instructorId) {
+    public CourseDto(int id, String title, String description, int instructorId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
-    }
-
-    public Course() {
     }
 
     public int getId() {
@@ -58,13 +49,4 @@ public class Course {
     public void setInstructorId(int instructorId) {
         this.instructorId = instructorId;
     }
-    
-    public List<Enrollment> getEnrollments() {
-        return enrollments;
-    }
-
-    public void setEnrollments(List<Enrollment> enrollments) {
-        this.enrollments = enrollments;
-    }
-
 }
