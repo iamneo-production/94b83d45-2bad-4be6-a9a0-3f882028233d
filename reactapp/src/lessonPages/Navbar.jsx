@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { FaUserCircle } from 'react-icons/fa'
 
 const Navbar = () => {
     return (
@@ -28,7 +29,7 @@ const Navbar = () => {
                     </ol>
                 </div>
                 <div className='flex items-center'>
-                    <a href='#'><img class="z-20 mr-2 h-6 w-6 sm:w-8 sm:h-8 rounded-full" src='UserIcon.ico' alt="usericon" /></a>
+                    <a href='#'><FaUserCircle class="z-20 text-gray-100 mr-2 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
                 </div>
             </nav>
         </div>
