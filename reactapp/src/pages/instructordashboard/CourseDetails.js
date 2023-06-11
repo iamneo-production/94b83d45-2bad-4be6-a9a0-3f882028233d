@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import UpdateCourse from "./UpdateCourse";
 import BASE_URL from "../../api/axios";
 import SearchBar from './SearchBar';
+import LessonFormMain from "./lessonPage/LessonFormMain";
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
 
@@ -132,12 +133,9 @@ function CourseDetails() {
               <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button>
             </div>
           </div>}
-        {lesson &&
-          <div className="coursedetails-lesson-assignment-container">
-            <h3 className="coursedetails-heading">Lessons</h3>
-            <button className="coursedetails-button">Add Lesson</button>
-          </div>}
+        {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
+        
 
       </div></>
 

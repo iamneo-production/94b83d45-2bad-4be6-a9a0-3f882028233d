@@ -7,7 +7,6 @@
     
   }
   .coursedetails-maincontainer {
-    display: flex;
     height: 100vh;
     background-color: rgb(247,249,252);
     justify-content: center;
