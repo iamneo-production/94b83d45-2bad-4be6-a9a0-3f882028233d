@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { FaArrowCircleLeft } from 'react-icons/fa'
+import { FaArrowCircleLeft, FaUserCircle } from 'react-icons/fa'
 import Sidebar from './Sidebar'
 import LessonForm from './LessonForm'
 import { Link } from 'react-router-dom'
-// import Footer from '../../../lessonPages/Footer'
+import Footer from '../../../lessonPages/Footer'
 import AssignmentsForm from './AssignmentsForm'
 import QuizForm from './QuizForm'
 
@@ -22,7 +22,7 @@ function LessonFormMain() {
                     <FaArrowCircleLeft className='text-white h-7 w-7 hover:text-gray-400' />
                 </Link>
                 <div>
-                    <a href='#'><img class="z-20 mr-3 w-8 h-8 rounded-full border-2 border-black hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-gray-600 transition-all" src='UserIcon.ico' alt="usericon" /></a>
+                    <a href='#'><FaUserCircle class="z-20 mr-2 text-gray-100 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
                 </div>
             </nav>
             <div className='flex'>
@@ -41,7 +41,7 @@ function LessonFormMain() {
                             (switchComponents === "Quizzes") && <QuizForm />
                         }
                     </div>
-                    {/* <Footer /> */}
+                    <Footer />
                 </div>
             </div>
         </>

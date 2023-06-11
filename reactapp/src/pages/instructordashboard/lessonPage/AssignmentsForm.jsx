@@ -3,6 +3,12 @@ import LessonAlert from './LessonAlert';
 import { FaFileUpload } from 'react-icons/fa'
 import { AiFillFileText } from 'react-icons/ai'
 import { MdDelete } from 'react-icons/md'
+import { GrDocumentPdf } from 'react-icons/gr'
+import { FcDocument } from 'react-icons/fc'
+import { FiEdit } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+
+
 
 function AssignmentsForm() {
     const [fileName, setFileName] = useState("No File Selected");
@@ -56,7 +62,7 @@ function AssignmentsForm() {
                                     (File.type === "application/pdf") ?
                                         <div className='flex-col flex items-center'>
                                             <span>
-                                                <img src="pdf.ico" className='h-40 w-40' />
+                                                <GrDocumentPdf className='h-40 w-40 text-gray-600' />
                                             </span>
 
                                             <p className='w-24 truncate'>
@@ -66,7 +72,7 @@ function AssignmentsForm() {
                                         :
                                         <div className='flex-col flex items-center'>
                                             <span>
-                                                <img src="docs.ico" className='h-40 w-40' />
+                                                <FcDocument className='h-40 w-40 text-gray-600' />
                                             </span>
 
                                             <p className='w-24 truncate'>
@@ -85,7 +91,7 @@ function AssignmentsForm() {
                             }
                         </form>
                     </main>
-                    <section className='flex justify-between items-center p-4 mt-4 mb-10 mx-16 bg-gray-100'>
+                    <div className='flex justify-between items-center p-4 mt-4 mb-10 mx-16 bg-gray-100'>
 
                         <span className='flex text-md font-medium'>
                             <AiFillFileText className='text-blue-400 h-6 w-6' />
@@ -95,7 +101,7 @@ function AssignmentsForm() {
                             setFileName("No File Selected")
                             setFile(null)
                         }} />
-                    </section>
+                    </div>
 
                     {/*footer*/}
                     <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
@@ -121,10 +127,10 @@ function AssignmentsForm() {
                                 </div>
                                 <div className='flex space-x-2'>
                                     <a href="#">
-                                        <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='Edit.ico' />
+                                        <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                     </a>
                                     <a href="#">
-                                        <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='delete.ico' />
+                                        <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                     </a>
                                 </div>
                             </div>

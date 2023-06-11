@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import LessonAlert from './LessonAlert';
+import { FiEdit } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+
 
 export default function QuizForm() {
 
@@ -154,10 +157,10 @@ export default function QuizForm() {
                                     </div>
                                     <div className='flex space-x-2'>
                                         <a href="#">
-                                            <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='Edit.ico' />
+                                            <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                         </a>
                                         <a href="#">
-                                            <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='delete.ico' />
+                                            <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                         </a>
                                     </div>
                                 </div>

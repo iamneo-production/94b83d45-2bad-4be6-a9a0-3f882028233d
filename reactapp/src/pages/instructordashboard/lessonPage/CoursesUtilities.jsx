@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md'
 import LessonTable from './LessonTable'
 import { RxCross2 } from 'react-icons/rx'
+import { FiEdit } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
 
 function CoursesUtilities({course}) {
 
@@ -17,10 +19,10 @@ function CoursesUtilities({course}) {
 
                 <div className='inline-flex items-center space-x-4'>
                     <a href="#">
-                        <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='Edit.ico' />
+                        <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
                     </a>
                     <a href="#">
-                        <img className='h-7 w-7 hover:ring-2 ring-gray-500' src='delete.ico' />
+                        <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
                     </a>
                 </div>
             </div>
