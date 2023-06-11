@@ -9,7 +9,9 @@ import NavBar from './NavBar';
 import UpdateCourse from "./UpdateCourse";
 import BASE_URL from "../../api/axios";
 import SearchBar from './SearchBar';
-import LessonFormMain from "./lessonPage/LessonFormMain";
+import InstructorDashboard from './lessonPage/InstructorDashboard'
+import CourseUtilities from "./lessonPage/LessonFormMain";
+import EnrolledStudents from "./EnrolledStudents";
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
 
@@ -121,22 +123,12 @@ function CourseDetails() {
       <div className="coursedetails-maincontainer">
 
 
-        {thiscourse &&
-          <div className="coursedetails-detailscontainer">
-            <div>
-              <h1>Course Tile: {details.title}</h1>
-              <h1>Course Id: {details.id}</h1>
-              <p>Course Description: {details.description}</p>
-            </div>
-            <div>
-              <button className="coursedetails-button" onClick={HandleUpdate}>Update Course</button>
-              <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button>
-            </div>
-          </div>}
-        {lesson && <LessonFormMain/>}
+        {thiscourse && <InstructorDashboard courses={details}/>}
+          {/* <button className="coursedetails-button" onClick={HandleUpdate}>Update Course</button>
+          <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button> */}
+        {lesson && <CourseUtilities/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
-        
-
+        {enrolledStudents && <EnrolledStudents courseId={details.id}/>}
       </div></>
 
   );
