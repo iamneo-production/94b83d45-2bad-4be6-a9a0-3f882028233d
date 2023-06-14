@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Quizzes from './QuizManagement/Quizzes';
+import Assignments from './AssignmentManagement/Assignments';
 
 const ContentPage = () => {
 
@@ -23,27 +25,27 @@ const ContentPage = () => {
                 <iframe className='h-full w-full mx-6' src="https://player.vimeo.com/video/146022717?color=0c88dd&title=0&byline=0&portrait=0&badge=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="Introduction" allowfullscreen></iframe>
             </div>
 
-            <div className='flex space-x-2 sm:space-x-6 p-2.5 sm:p-6 justify-start border-y-2 mt-8 sm:mt-12'>
-                <button type='button' onClick={() => handleButtonClick('Overview')} class="inline-flex shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium text-gray-500 hover:text-gray-500 active:text-gray-800 focus:text-blue-500">
+            <div className='flex space-x-2 sm:space-x-6 p-1.5 sm:p-4 justify-start border-y-2 mt-8 sm:mt-12'>
+                <button type='button' onClick={() => handleButtonClick('Overview')} class={`${activeComponent === 'Overview' ? 'text-blue-500 bg-gray-300 p-2' : 'text-gray-500 p-2'} inline-flex rounded-xl shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium active:text-gray-800`}>
                     Overview
                 </button>
-                <button type='button' onClick={() => handleButtonClick('Assignments')} class="inline-flex shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium text-gray-500 hover:text-gray-500 active:text-gray-800 focus:text-blue-500">
+                <button type='button' onClick={() => handleButtonClick('Assignments')} class={`${activeComponent === 'Assignments' ? 'text-blue-500 bg-gray-300 p-2' : 'text-gray-500 p-2'} inline-flex rounded-xl shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium active:text-gray-800`}>
                     Assignments
                 </button>
-                <button type='button' onClick={() => handleButtonClick('Quizzes')} class="inline-flex shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium text-gray-500 hover:text-gray-500 active:text-gray-800 focus:text-blue-500">
+                <button type='button' onClick={() => handleButtonClick('Quizzes')} class={`${activeComponent === 'Quizzes' ? 'text-blue-500 bg-gray-300 p-2' : 'text-gray-500 p-2'} inline-flex rounded-xl shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium active:text-gray-800`}>
                     Quizzes
                 </button>
-                <button type='button' onClick={() => handleButtonClick('Discussion')} class="inline-flex shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium text-gray-500 hover:text-gray-500 active:text-gray-800 focus:text-blue-500">
+                <button type='button' onClick={() => handleButtonClick('Discussion')} class={`${activeComponent === 'Discussion' ? 'text-blue-500 bg-gray-300 p-2' : 'text-gray-500 p-2'} inline-flex rounded-xl shadow-[0_5px_0_rgb(250,250,250)] hover:shadow-[0_2px_0px_rgb(0,0,0)] items-center text-sm sm:text-lg font-medium active:text-gray-800`}>
                     Discussion Forum
                 </button>
             </div>
             
-            <div className='h-96'>
+            <div className='bg-neutral-200'>
                 {
-                    activeComponent === 'Assignments' && <div> you are in Assignments </div>
+                    activeComponent === 'Assignments' && <Assignments />
                 }
                 {
-                    activeComponent === 'Quizzes' && <div> you are in Quizzes</div>
+                    activeComponent === 'Quizzes' && <Quizzes />
                 }
                 {
                     activeComponent === 'Discussion' && <div> you are in Discussion </div>
