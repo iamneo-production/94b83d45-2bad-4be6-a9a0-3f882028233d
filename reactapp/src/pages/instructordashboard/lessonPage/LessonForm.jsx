@@ -28,7 +28,7 @@ function LessonForm({ setValue }) {
                             <div class="flex flex-col gap-4 p-4">
                                 <div class="relative h-11 w-full min-w-[200px]">
                                     <input
-                                        required={false}
+                                        required={true}
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
                                     />
@@ -38,7 +38,7 @@ function LessonForm({ setValue }) {
                                 </div>
                                 <div class="relative h-11 w-full min-w-[200px]">
                                     <input
-                                        required={false}
+                                        required={true}
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
                                     />
@@ -48,7 +48,7 @@ function LessonForm({ setValue }) {
                                 </div>
                                 <div class="relative h-52 w-full min-w-[200px]">
                                     <textarea
-                                        required={false}
+                                        required={true}
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
                                     />

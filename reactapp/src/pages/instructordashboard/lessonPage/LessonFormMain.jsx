@@ -8,8 +8,6 @@ import AssignmentsForm from './AssignmentsForm'
 import QuizForm from './QuizForm'
 
 
-const courses = [{ id: "101", title: "Data Structures and Algorithms", instructorId: "1001" }, { id: "102", title: "Computer Network", instructorId: "1002" }, { id: "103", title: "Operating System", instructorId: "1003" }];
-
 function LessonFormMain() {
 
     const [switchComponents, setComponents] = useState('lessonForm')
@@ -22,7 +20,7 @@ function LessonFormMain() {
                     <FaArrowCircleLeft className='text-white h-7 w-7 hover:text-gray-400' />
                 </Link>
                 <div>
-                    <a href='#'><FaUserCircle class="z-20 mr-2 text-gray-100 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
+                    <a href='/#'><FaUserCircle class="z-20 mr-2 text-gray-100 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
                 </div>
             </nav>
             <div className='flex'>

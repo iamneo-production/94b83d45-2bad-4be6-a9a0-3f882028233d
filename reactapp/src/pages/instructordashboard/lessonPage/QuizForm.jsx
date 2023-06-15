@@ -10,12 +10,12 @@ export default function QuizForm() {
     const [showAlert, setAlert] = useState(false)
 
     const [question, setQuestion] = useState({
-        Question: '',
+        question: '',
         option1: '',
         option2: '',
         option3: '',
         option4: '',
-        Answer: ''
+        answer: ''
     });
 
 
@@ -26,7 +26,7 @@ export default function QuizForm() {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         setAlert(!showAlert)
         setQuestions(current => [...current, question]);
     };
@@ -58,7 +58,7 @@ export default function QuizForm() {
                                     <textarea
                                         type="text"
                                         name="question"
-                                        value={question.Question}
+                                        value={question.question}
                                         onChange={handleInputChange}
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
@@ -76,7 +76,8 @@ export default function QuizForm() {
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
                                     />
-                                    <label class="pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-gray-500 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-gray-500 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-gray-800 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-gray-500">                                        Option1
+                                    <label class="pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-black transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-gray-500 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-gray-500 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-gray-800 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-gray-500">                                       
+                                         Option1
                                     </label>
                                 </div>
                                 <div class="relative h-11 w-full min-w-[200px]">
@@ -122,7 +123,7 @@ export default function QuizForm() {
                                     <input
                                         type="text"
                                         name="answer"
-                                        value={question.Answer}
+                                        value={question.answer}
                                         onChange={handleInputChange}
                                         class="peer h-full w-full rounded-md border border-gray-500 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-500 placeholder-shown:border-t-gray-500 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0"
                                         placeholder=" "
@@ -140,7 +141,7 @@ export default function QuizForm() {
                             className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="submit"
                         >
-                            Save lesson
+                            Save Quiz
                         </button>
                     </div>
                 </div>
@@ -156,10 +157,10 @@ export default function QuizForm() {
                                         {JSON.stringify(ques, null, 2)}
                                     </div>
                                     <div className='flex space-x-2'>
-                                        <a href="#">
+                                        <a href="/#">
                                             <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                         </a>
-                                        <a href="#">
+                                        <a href="/#">
                                             <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                         </a>
                                     </div>
