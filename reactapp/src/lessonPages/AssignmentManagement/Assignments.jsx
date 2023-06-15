@@ -54,7 +54,7 @@ const Assignments = () => {
                                     </div>
                                     <div className='flex items-center pl-2 justify-center w-3/4'>
                                         <input type="file" accept={".pdf,.doc,.docx"} required={true} className="block w-full text-sm text-gray-500 md:file:mr-2 file:py-2 file:px-2 md:file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-600 file:text-white hover:file:bg-blue-500" onChange={({ target: { files } }) => { if (files) { setFile(files[0]) } }} />
-                                        <button onClick={() => setDisplayFile(!displayFile)} className='bg-blue-600 md:mr-4 px-2 md:px-4 py-2 text-sm rounded-md font-semibold text-white hover:bg-blue-500'>Upload</button>
+                                        <button onClick={file && (() => setDisplayFile(!displayFile))} className='bg-blue-600 md:mr-4 px-2 md:px-4 py-2 text-sm rounded-md font-semibold text-white hover:bg-blue-500'>Upload</button>
                                     </div>
                                 </div>
                             </div>
