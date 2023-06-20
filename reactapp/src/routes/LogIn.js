@@ -16,22 +16,19 @@ function LogIn() {
           const response = await axios.post('https://8080-ceddffcfcefcbcdadccddafbcdeaeaadbdbabf.project.examly.io/users/register', { "email":email,"password":pass});
           alert(response.data);
         } catch (error) {
-           if(error.response.data.hasOwnProperty("email"))
-           {
-            setEmailerror(error.response.data.email);
-           }
-           else if(error.response.data.hasOwnProperty("password"))
-           {
-            setPwderror(error.response.data.password);
-           }
-           else if(error.response.data)
-           {
-            setOerror(error.response.data);
-           }
-           else
-           {
-                alert("Error! Please try again later")
-           }
+          if (error.response && error.response.data) {
+            const { data } = error.response;
+    
+            if (data.hasOwnProperty("email")) {
+              setEmailerror(data.email);
+            } else if (data.hasOwnProperty("password")) {
+              setPwderror(data.password);
+            } else {
+              setOerror(data);
+            }
+          } else {
+            alert("Error! Please try again later");
+          }
 
 
         }

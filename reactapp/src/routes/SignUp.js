@@ -17,6 +17,13 @@ function SignUp() {
     const [passerror,setPwderror]=useState('');
     const [cpasserror, setCpwderror] = useState('');
     const [othererror,setOerror]=useState('');
+  const signupData = {
+    firstName: fname,
+    lastName: lname,
+    email: email,
+    password: pass,
+    confirmpassword: cpass
+  };
 
     // const navigate=useNavigate();
     // const navigateHome=()=>{
@@ -28,40 +35,32 @@ function SignUp() {
             e.preventDefault();
         
             try {
-              const response = await axios.post('https://8080-ceddffcfcefcbcdadccddafbcdeaeaadbdbabf.project.examly.io/users/register', { "firstName":fname,"lastName":lname,"email":email,"password":pass,"confirmpassword":cpass});
+              const response = await axios.post('https://8080-ceddffcfcefcbcdadccddafbcdeaeaadbdbabf.project.examly.io/users/register', signupData,{headers: {
+                'Content-Type': 'application/json'
+              }});
               alert(response.data);
             } catch (error) {
-               if(error.response.data.hasOwnProperty("firstName"))
-               {
-                    setFerror(error.response.data.firstName);
-               }
-               else if(error.response.data.hasOwnProperty("lastName"))
-               {
-                    setLerror(error.response.data.lastName);
-               }
-               else if(error.response.data.hasOwnProperty("email"))
-               {
-                setEmailerror(error.response.data.email);
-               }
-               else if(error.response.data.hasOwnProperty("password"))
-               {
-                setPwderror(error.response.data.password);
-               }
-               else if(error.response.data.hasOwnProperty("confirmpassword"))
-               {
-                setCpwderror(error.response.data.confirmpassword);
-               }
-               else if(error.response.data)
-               {
-                setOerror(error.response.data);
-               }
-               else
-               {
-                    alert("Error! Please try again later")
-               }
-
-
+              if (error.response && error.response.data) {
+                const { data } = error.response;
+            
+                if (data.hasOwnProperty("firstName")) {
+                  setFerror(data.firstName);
+                } else if (data.hasOwnProperty("lastName")) {
+                  setLerror(data.lastName);
+                } else if (data.hasOwnProperty("email")) {
+                  setEmailerror(data.email);
+                } else if (data.hasOwnProperty("password")) {
+                  setPwderror(data.password);
+                } else if (data.hasOwnProperty("confirmpassword")) {
+                  setCpwderror(data.confirmpassword);
+                } else {
+                  setOerror(data);
+                }
+              } else {
+                alert("Error! Please try again later");
+              }
             }
+            
           };
           
         return (
