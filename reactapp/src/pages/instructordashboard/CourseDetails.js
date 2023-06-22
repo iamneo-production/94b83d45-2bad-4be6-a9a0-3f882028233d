@@ -7,6 +7,9 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import NavBar from './NavBar';
 import UpdateCourse from "./UpdateCourse";
+import BASE_URL from "../../api/axios";
+import SearchBar from './SearchBar';
+import LessonFormMain from "./lessonPage/LessonFormMain";
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
 
@@ -70,7 +73,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${courseId}`)
+        const response = await axios.get(`${BASE_URL}courses/${courseId}`)
         setDetails(response.data);
       }
       catch (error) {
@@ -111,6 +114,7 @@ function CourseDetails() {
           setEnrolledStudents={setEnrolledStudents}
           setUpdateCourse={setUpdateCourse}
           navigate={navigate} />
+        <SearchBar />
         <NavBar />
 
       </div>
@@ -129,12 +133,9 @@ function CourseDetails() {
               <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button>
             </div>
           </div>}
-        {lesson &&
-          <div className="coursedetails-lesson-assignment-container">
-            <h3 className="coursedetails-heading">Lessons</h3>
-            <button className="coursedetails-button">Add Lesson</button>
-          </div>}
+        {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
+        
 
       </div></>
 
