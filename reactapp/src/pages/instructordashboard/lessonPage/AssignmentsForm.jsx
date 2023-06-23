@@ -105,11 +105,11 @@ function AssignmentsForm() {
 
                     {/*footer*/}
                     <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
-                        <button onClick={handleSubmit}
+                        <button onClick={File && handleSubmit}
                             className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="submit"
                         >
-                            Save lesson
+                            Upload Assignment
                         </button>
                     </div>
                 </div>
@@ -126,10 +126,10 @@ function AssignmentsForm() {
                                     <p className='px-1'>{file.name}</p>
                                 </div>
                                 <div className='flex space-x-2'>
-                                    <a href="#">
+                                    <a href="/#">
                                         <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                     </a>
-                                    <a href="#">
+                                    <a href="/#">
                                         <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500' />
                                     </a>
                                 </div>

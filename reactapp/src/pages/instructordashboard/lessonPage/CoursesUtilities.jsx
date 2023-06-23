@@ -18,10 +18,10 @@ function CoursesUtilities({course}) {
                 </button>
 
                 <div className='inline-flex items-center space-x-4'>
-                    <a href="#">
+                    <a href="/#">
                         <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
                     </a>
-                    <a href="#">
+                    <a href="/#">
                         <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
                     </a>
                 </div>
