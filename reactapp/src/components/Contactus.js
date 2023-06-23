@@ -21,6 +21,7 @@
 import "./Contactusstyles.css";
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from "../api/axios";
 
 function Contactus() {
   const [name, setName] = useState('');
@@ -31,7 +32,7 @@ function Contactus() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://8080-ceddffcfcefcbcdadccddafbcdeaeaadbdbabf.project.examly.io/sendmsg', {
+      const response = await axios.post(`${BASE_URL}sendmsg`, {
         "name":name,
         "email":email,
         "subject":subject,

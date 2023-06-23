@@ -2,8 +2,9 @@ import Navbar from "../components/Navbar";
 import {useState} from "react";
 // import {faCheck,faTimes,faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import BASE_URL from "../api/axios";
 function SignUp() {
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
@@ -25,7 +26,7 @@ function SignUp() {
     confirmpassword: cpass
   };
 
-    // const navigate=useNavigate();
+    const navigate=useNavigate();
     // const navigateHome=()=>{
     //     navigate('/signin')
     // };
@@ -35,10 +36,11 @@ function SignUp() {
             e.preventDefault();
         
             try {
-              const response = await axios.post('https://8080-ceddffcfcefcbcdadccddafbcdeaeaadbdbabf.project.examly.io/users/register', signupData,{headers: {
+              const response = await axios.post(`${BASE_URL}users/register`, signupData,{headers: {
                 'Content-Type': 'application/json'
               }});
               alert(response.data);
+              navigate("/signin");
             } catch (error) {
               if (error.response && error.response.data) {
                 const { data } = error.response;
@@ -90,7 +92,7 @@ function SignUp() {
                         Already registered?<br />
                         <span className="line">
                             {/*put router link here*/}
-                            <a href="/signin">Login</a>
+                            <button onClick={()=>navigate("/signin")}>Login</button>
                         </span>
                     </p>
             </div>
