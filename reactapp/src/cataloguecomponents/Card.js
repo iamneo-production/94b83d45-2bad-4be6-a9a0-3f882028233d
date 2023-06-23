@@ -9,7 +9,7 @@ export function Courses(props) {
                         <h2>{props.name}</h2>
                         <div className='cataloguecourseInstructor'><b>- </b>{props.instructor}</div>
                      
-                        <a href="#">View Details <i className="fas fa-chevron-right"></i></a>
+                        <a href="/#">View Details <i className="fas fa-chevron-right"></i></a>
                     </div>
                     <div className="cataloguecourse-info">
                         <div className="cataloguecourseDescription"><b><h3>Description -</h3></b><p>{props.description}</p></div>
