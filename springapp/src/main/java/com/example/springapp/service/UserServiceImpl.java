@@ -1,21 +1,27 @@
 package com.example.springapp.service;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.example.springapp.model.*;
 import com.example.springapp.repository.*;
 import com.example.springapp.exception.*;
+import org.springframework.stereotype.Service;
+import java.util.*;
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepo userRepo;
     @Override
-    public User registerUser(User user) {
-        Optional<User> existUser= userRepo.findUserByEmail(user.getEmail());
-        if(existUser.isEmpty()){
-            return userRepo.save(user);
+    public Map<String,String> getUserDetails(int id){
+        Optional<User> data=userRepo.findById(id);
+        Map<String,String> userdetails= new HashMap<>();
+        if(data.isPresent()){
+            User user=data.get();
+        userdetails.put("First Name", user.getFirstName());
+        userdetails.put("Last Name", user.getLastName());
+        userdetails.put("E-mail",user.getEmail());
+        userdetails.put("Role",user.getRole());
         }
-      throw new UserAlreadyExistException("Email Already Exist");
+        return userdetails;
     }
 
 }

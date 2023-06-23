@@ -1,31 +1,57 @@
 package com.example.springapp.service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import java.util.*;
 import com.example.springapp.repository.CourseRepo;
 import com.example.springapp.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.springapp.exception.*;
+import com.example.springapp.dto.CourseDto;
+
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseRepo courseRepo;
 
-    public List<Course> cousre() {
-        return courseRepo.findAll();
-    }
-    @Override
-    public Course saveCourse(Course course) {
-        Optional<Course> existingCourse = courseRepo.findById(course.getId());
-        if (existingCourse.isEmpty()) {
-            return courseRepo.save(course);
+    public List<CourseDto> cousre() {
+        List<Course> courseList = courseRepo.findAll();
+        List<CourseDto> result = new ArrayList<>();
+        for (Course currCourse : courseList) {
+            CourseDto course = new CourseDto();
+            course.setId(currCourse.getId());
+            course.setTitle(currCourse.getTitle());
+            course.setDescription(currCourse.getDescription());
+            course.setInstructorId(currCourse.getInstructorId());
+            result.add(course);
         }
-        throw new CourseAlreadyExistException("Course Id Already Exists");
-    }    
+        return result;
+    }
 
     @Override
-    public Optional<Course> getCourseById(int courseId) {
-        return courseRepo.findById(courseId);
+    public ResponseEntity<?> saveCourse(Course course) {
+        Optional<Course> existingCourse = courseRepo.findById(course.getId());
+        if (existingCourse.isEmpty()) {
+            courseRepo.save(course);
+            return new ResponseEntity<>("Course Created Successfully", HttpStatus.CREATED);
+        }
+        throw new CourseAlreadyExistException("Course Id Already Exists");
+    }
+
+    @Override
+    public ResponseEntity<?> getCourseById(int courseId) {
+        Optional<Course> exist = courseRepo.findById(courseId);
+        if(exist.isEmpty()){
+            return new ResponseEntity<>("course does not exist with course id: "+" "+ courseId,HttpStatus.BAD_REQUEST);
+        }
+        Course currCourse=exist.get();
+        CourseDto course = new CourseDto();
+        course.setId(currCourse.getId());
+        course.setTitle(currCourse.getTitle());
+        course.setDescription(currCourse.getDescription());
+        course.setInstructorId(currCourse.getInstructorId());
+        return new ResponseEntity<>(course,HttpStatus.OK);
     }
 
     @Override
@@ -48,6 +74,6 @@ public class CourseServiceImpl implements CourseService {
             return "Course Updated Successfully";
         }
         return "Course Not Updated";
-        
+
     }
 }
