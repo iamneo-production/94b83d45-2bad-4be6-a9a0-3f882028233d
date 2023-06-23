@@ -10,6 +10,8 @@ import com.example.springapp.model.User;
 import com.example.springapp.service.AuthService;
 import com.example.springapp.dto.*;
 import java.util.Map;
+import org.springframework.web.bind.annotation.CrossOrigin;
+@CrossOrigin()
 @RestController
 public class AuthController {
     @Autowired

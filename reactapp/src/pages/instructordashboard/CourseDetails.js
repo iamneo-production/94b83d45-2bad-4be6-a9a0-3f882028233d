@@ -86,7 +86,7 @@ function CourseDetails() {
   function HandleDelete() {
     const deleteData = async () => {
       try {
-        await axios.delete(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${details.id}`)
+        await axios.delete(`${BASE_URL}courses/${details.id}`)
         alert("deleted succesfully")
         setTimeout(() => navigate("/instructor"), 2);
       } catch (error) {
