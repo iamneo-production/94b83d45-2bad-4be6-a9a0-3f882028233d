@@ -10,8 +10,8 @@ import UpdateCourse from "./UpdateCourse";
 import BASE_URL from "../../api/axios";
 import SearchBar from './SearchBar';
 import InstructorDashboard from './lessonPage/InstructorDashboard'
-import CourseUtilities from "./lessonPage/LessonFormMain";
 import EnrolledStudents from "./EnrolledStudents";
+import LessonFormMain from "./lessonPage/LessonFormMain";
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
 
@@ -83,26 +83,9 @@ function CourseDetails() {
       }
     }
     fetchData();
-  }, [courseId]);
+  }, [thiscourse]);
 
-  function HandleDelete() {
-    const deleteData = async () => {
-      try {
-        await axios.delete(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${details.id}`)
-        alert("deleted succesfully")
-        setTimeout(() => navigate("/instructor"), 2);
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    deleteData();
-  }
-  function HandleUpdate() {
-    setUpdateCourse(true);
-    setThisCourse(false);
-    setEnrolledStudents(false);
-    setlesson(false);
-  }
+  
 
   return (
     <>
@@ -123,10 +106,10 @@ function CourseDetails() {
       <div className="coursedetails-maincontainer">
 
 
-        {thiscourse && <InstructorDashboard courses={details}/>}
+        {thiscourse && <InstructorDashboard courses={details} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
           {/* <button className="coursedetails-button" onClick={HandleUpdate}>Update Course</button>
           <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button> */}
-        {lesson && <CourseUtilities/>}
+        {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
         {enrolledStudents && <EnrolledStudents courseId={details.id}/>}
       </div></>

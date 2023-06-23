@@ -8,6 +8,6 @@ public interface CourseService {
     public List<CourseDto> cousre();
     public ResponseEntity<?> saveCourse(Course course);
     public ResponseEntity<?> getCourseById(int courseId);
-    public void delCourseById(int courseId);
+    public ResponseEntity<?> delCourseById(int courseId);
     public String updatecourses(int courseId, Course c);
 }

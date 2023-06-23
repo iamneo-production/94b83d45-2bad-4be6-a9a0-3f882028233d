@@ -7,15 +7,13 @@ import './EnrolledStudents.css';
 
 function EnrolledStudents({ courseId }) {
   const [users, setUsers] = useState([]);
-  const [errmsg, setErrmsg] = useState('');
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${BASE_URL}courses/${courseId}/enrollments`);
         setUsers(response.data);
       } catch (error) {
-        setErrmsg(error.message);
+        console.log(error);
       }
     };
 
@@ -24,8 +22,8 @@ function EnrolledStudents({ courseId }) {
 
   return (
     <>
-      {errmsg ? (
-        <div>null</div>
+      {(users === null || users.length === 0) ? (
+        <h1>No users curreently enrolled into this course</h1>
       ) : (
         <div className="table-container">
           <table>

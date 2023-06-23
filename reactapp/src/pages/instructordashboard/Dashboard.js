@@ -85,7 +85,7 @@ function Dashboard() {
     };
   
     fetchData();
-  }, []);
+  }, [ismycourses]);
   
 
 

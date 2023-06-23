@@ -4,13 +4,13 @@ import CoursesUtilities from './CoursesUtilities';
 
 
 
-function InstructorDashboard({courses}) {
+function InstructorDashboard({courses, setUpdateCourse, setThisCourse}) {
 
     {/*const [showModal, setModal] = useState(false)*/}
 
     return (
         <>
-            <div className='flex justify-between items-center mx-4 md:mx-10 md:my-6'>
+            <div className='flex justify-between items-center mx-4 md:mx-10'>
                 <p className="flex text-md md:text-lg lg:text-2xl font-bold font-sans text-gray-700">{courses.title} Course</p>
                 {/* <button onClick={() => setModal(!showModal)} type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-xs md:text-md px-2 md:px-5 py-2.5 text-center inline-flex items-center">
                     <TbPlus className='mx-1 md:mx-2' />
@@ -85,7 +85,7 @@ function InstructorDashboard({courses}) {
             <hr className="w-auto h-0.5 my-2 mx-4 md:mx-6 bg-gray-300 border-0 rounded" />
 
 
-            <CoursesUtilities course={courses} key={courses.id} />
+            <CoursesUtilities course={courses} key={courses.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>
 
 
 
