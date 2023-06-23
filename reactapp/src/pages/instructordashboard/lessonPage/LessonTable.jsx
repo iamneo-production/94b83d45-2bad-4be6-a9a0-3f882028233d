@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function LessonTable() {
 
-    const courses = [{ id: "101", title: "Data Structures and Algorithms", instructorId: "1001" }, { id: "102", title: "Computer Network", instructorId: "1002" }, { id: "103", title: "Operating System", instructorId: "1003" }];
+    const Lessons = [{ id: "101", title: "Data Structures and Algorithms", instructorId: "1001" }, { id: "102", title: "Computer Network", instructorId: "1002" }, { id: "103", title: "Operating System", instructorId: "1003" }];
 
     return (
         <div className='bg-blue-200 px-4 mx-2 lg:px-14 py-8 my-10 lg:mx-20 rounded-2xl'>
@@ -30,20 +30,20 @@ function LessonTable() {
                     </thead>
                     <tbody>
                         {
-                            courses.map(course => {
+                            Lessons.map(lesson => {
                                 return [
                                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td class="px-4 lg:px-6 py-4">
-                                            {course.id}
+                                            {lesson.id}
                                         </td>
                                         <td class="px-4 lg:px-6 py-4">
-                                            {course.title}
+                                            {lesson.title}
                                         </td>
                                         <td class="px-4 lg:px-6 py-4">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="/#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                         <td class="px-4 lg:px-6 py-4">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                                            <a href="/#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                                         </td>
                                     </tr>
                                 ]

@@ -6,10 +6,15 @@ import java.io.IOException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.authentication.BadCredentialsException;
 @Component
 public class AuthEntryPoint implements AuthenticationEntryPoint{
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,  AuthenticationException authException) throws IOException,ServletException{
-        response.sendError(response.SC_UNAUTHORIZED,"Unauthorized");
+        if (authException instanceof BadCredentialsException) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid password");
+        } else {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        }
     }
 }

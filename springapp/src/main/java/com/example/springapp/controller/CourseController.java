@@ -15,7 +15,7 @@ import com.example.springapp.model.*;
 import com.example.springapp.dto.CourseDto;
 import com.example.springapp.service.*;
 @RestController
-@CrossOrigin(origins = "https://8081-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io", allowedHeaders = "Content-Type")
+@CrossOrigin()
 
 
 public class CourseController {

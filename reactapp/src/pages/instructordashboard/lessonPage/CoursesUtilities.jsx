@@ -34,10 +34,10 @@ function CoursesUtilities({course,setUpdateCourse,setThisCourse}) {
                 </button>
 
                 <div className='inline-flex items-center space-x-4'>
-                    <button onClick={()=>{setUpdateCourse(true); setThisCourse(false)}}>
+                    <a href="/#">
                         <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
-                    </button>
-                    <button onClick={HandleDelete}>
+                    </a>
+                    <a href="/#">
                         <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
                     </button>
                 </div>

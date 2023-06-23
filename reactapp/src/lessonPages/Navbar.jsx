@@ -29,7 +29,7 @@ const Navbar = () => {
                     </ol>
                 </div>
                 <div className='flex items-center'>
-                    <a href='#'><FaUserCircle class="z-20 text-gray-100 mr-2 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
+                    <a href='/#'><FaUserCircle class="z-20 text-gray-100 mr-2 h-6 w-6 sm:w-8 sm:h-8 rounded-full" /></a>
                 </div>
             </nav>
         </div>
