@@ -11,6 +11,9 @@ import CourseDetails from "./pages/instructordashboard/CourseDetails";
 import LessonPage from './lessonPages/LessonPage';
 import InstructorDashboard from './pages/instructordashboard/lessonPage/InstructorDashboard'
 import LessonFormMain from './pages/instructordashboard/lessonPage/LessonFormMain'
+import Main from "./cataloguecomponents/Main";
+
+
 
 function App() {
   return (
@@ -27,6 +30,7 @@ function App() {
         <Route path='/lessonpage' element={<LessonPage />} />
         <Route path='/dashboard' element={<InstructorDashboard />} />
         <Route path='/lessonform' element={<LessonFormMain />} />
+        <Route path='/catalogue' element={<Main />} />
       </Routes>
     </div>
   );
