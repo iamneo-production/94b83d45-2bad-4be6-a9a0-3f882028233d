@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService{
     @Autowired
     private JwtUtils jwtUtils;
 
-    private String defaultRole="USER";
+ 
 
     public String registerUser(UserRegisterDto userRegisterDto) {
         User user= new User();
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService{
             throw new PasswordNotMatchException("Password and Confirm Password does not Match");
         }
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
-        user.setRole(defaultRole);
+        user.setRole(userRegisterDto.getRole());
 
         Optional<User> existUser= userRepo.findUserByEmail(user.getEmail());
         if(existUser.isEmpty()){

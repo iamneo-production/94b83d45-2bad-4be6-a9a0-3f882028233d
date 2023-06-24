@@ -11,8 +11,9 @@ import com.example.springapp.service.AuthService;
 import com.example.springapp.dto.*;
 import java.util.Map;
 import org.springframework.web.bind.annotation.CrossOrigin;
-@CrossOrigin()
+
 @RestController
+@CrossOrigin()
 public class AuthController {
     @Autowired
     private AuthService authservice;

@@ -23,7 +23,8 @@ function SignUp() {
     lastName: lname,
     email: email,
     password: pass,
-    confirmpassword: cpass
+    confirmpassword: cpass,
+    role:selectedRole
   };
 
 
@@ -113,8 +114,8 @@ function SignUp() {
           <input
             type="radio"
             name="role"
-            value="user"
-            checked={selectedRole === 'user'}
+            value="USER"
+            checked={selectedRole === 'USER'}
             onChange={(e)=>setSelectedRole(e.target.value)}
           />
           User
@@ -124,8 +125,8 @@ function SignUp() {
           <input
             type="radio"
             name="role"
-            value="instructor"
-            checked={selectedRole === 'instructor'}
+            value="INSTRUCTOR"
+            checked={selectedRole === 'INSTRUCTOR'}
             onChange={(e)=>setSelectedRole(e.target.value)}
           />
           Instructor
