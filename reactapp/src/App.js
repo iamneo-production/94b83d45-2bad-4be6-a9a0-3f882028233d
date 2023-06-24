@@ -27,6 +27,14 @@ function App() {
         <Route path='/lessonpage' element={<LessonPage />} />
         <Route path='/dashboard' element={<InstructorDashboard />} />
         <Route path='/lessonform' element={<LessonFormMain />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/studentdashboard" element={<StudentDashboard />} />
+        <Route path="/notifications" element={<NotificationPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/quizprogress" element={<QuizProgress />} />
+        <Route path="*" element={<NotFoundPage />} />
+        
       </Routes>
     </div>
   );
