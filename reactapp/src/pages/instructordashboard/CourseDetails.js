@@ -85,24 +85,8 @@ function CourseDetails() {
     fetchData();
   }, [courseId]);
 
-  function HandleDelete() {
-    const deleteData = async () => {
-      try {
-        await axios.delete(`${BASE_URL}courses/${details.id}`)
-        alert("deleted succesfully")
-        setTimeout(() => navigate("/instructor"), 2);
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    deleteData();
-  }
-  function HandleUpdate() {
-    setUpdateCourse(true);
-    setThisCourse(false);
-    setEnrolledStudents(false);
-    setlesson(false);
-  }
+  
+  
 
   return (
     <>

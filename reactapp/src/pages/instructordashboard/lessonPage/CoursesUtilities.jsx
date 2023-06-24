@@ -4,9 +4,27 @@ import LessonTable from './LessonTable'
 import { RxCross2 } from 'react-icons/rx'
 import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBin5Line } from 'react-icons/ri'
-
-function CoursesUtilities({course}) {
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import BASE_URL from '../../../api/axios'
+function CoursesUtilities({course,setUpdateCourse, setThisCourse}) {
+    const navigate=useNavigate()
+    function HandleDelete() {
+        const deleteData = async () => {
+          try {
+            await axios.delete(`${BASE_URL}courses/${course.id}`)
+            alert("deleted succesfully")
+            navigate("/instructor")
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        deleteData();
+      }
+      function HandleUpdate() {
+        setUpdateCourse(true);
+        setThisCourse(false);
+      }
     let [isClicked, checkClicked] = useState(false)
 
     return (
@@ -18,12 +36,12 @@ function CoursesUtilities({course}) {
                 </button>
 
                 <div className='inline-flex items-center space-x-4'>
-                    <a href="/#">
+                    <button onClick={HandleUpdate}>
                         <FiEdit className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
-                    </a>
-                    <a href="/#">
+                    </button>
+                    <button onClick={HandleDelete}>
                         <RiDeleteBin5Line className='h-6 w-6 text-gray-600 hover:ring-2 ring-gray-500'/>
-                    </a>
+                    </button>
                 </div>
             </div>
             <div>

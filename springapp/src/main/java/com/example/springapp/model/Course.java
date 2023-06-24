@@ -11,9 +11,9 @@ public class Course {
     private String description;
 
     private int instructorId;
-
-    @OneToMany(fetch =FetchType.EAGER, mappedBy="course")
-    //course refers the course attribute in the Enrollment entity
+    
+    @OneToMany(mappedBy="course")
+    //course attribute in Entollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     
 

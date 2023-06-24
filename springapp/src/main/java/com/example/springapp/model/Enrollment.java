@@ -12,7 +12,7 @@ public class Enrollment {
 
     @ManyToOne
     @JoinColumn(name="courseId")
-    //column courseId is a foreign key refers the primary key in Course entity
+    //column courseId is a foreign key refers that the primary key in Course entity
     private Course course;
 
     public Enrollment() {

@@ -40,4 +40,5 @@ public class EnrollmentController{
     public ResponseEntity<?> deleteEnrollment(@PathVariable("course_id") int courseId, @PathVariable("user_id") int userId) {
         return enrollmentService.deleteEnrollment(courseId,userId);
     }
+    
 }
