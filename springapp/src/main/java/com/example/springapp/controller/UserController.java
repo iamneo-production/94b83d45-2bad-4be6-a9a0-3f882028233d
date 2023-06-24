@@ -13,6 +13,7 @@ import java.util.*;
 import com.example.springapp.dto.*;
 import com.example.springapp.exception.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import javax.validation.Valid;
 @RestController
 @CrossOrigin()
 public class UserController {
@@ -20,13 +21,13 @@ public class UserController {
     private UserService userservice;
 
     @GetMapping("/users/{id}")
-    public ResponseEntity<?> registerNewUser(@PathVariable("id") int id ){
+    public ResponseEntity<?> getUserDetails(@PathVariable("id") int id ){
         Map<String,String> user= userservice.getUserDetails(id);
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
     @PutMapping("/users/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") int id, @RequestBody User user){
-        //TODO
-        return null;
+    public ResponseEntity<?> updateUser(@PathVariable("id") int id,@Valid @RequestBody UserRegisterDto user){
+        
+        return userservice.updateUser(user, id);
     }
 }

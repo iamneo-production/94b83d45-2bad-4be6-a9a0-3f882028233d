@@ -72,20 +72,20 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public String updatecourses(int courseId, Course course) {
+    public ResponseEntity<?> updatecourses(int courseId, Course course) {
         Optional<Course> current = courseRepo.findById(courseId);
         if (current.isPresent()) {
             Course newCourse = current.get();
-            if (!"".equals(course.getTitle())) {
+            if (course.getTitle()!=null && !"".equals(course.getTitle())) {
                 newCourse.setTitle(course.getTitle());
             }
-            if (!"".equals(course.getDescription())) {
+            if (course.getDescription()!=null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
             courseRepo.save(newCourse);
-            return "Course Updated Successfully";
+            return new ResponseEntity<>("Course Updated Successfully",HttpStatus.OK);
         }
-        return "Course Not Updated";
+        return new ResponseEntity<>("Course Not Updated",HttpStatus.BAD_REQUEST);
 
     }
 }
