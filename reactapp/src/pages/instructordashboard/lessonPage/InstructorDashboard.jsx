@@ -4,41 +4,40 @@ import CoursesUtilities from './CoursesUtilities';
 
 
 
-function InstructorDashboard() {
+function InstructorDashboard({courses, setUpdateCourse, setThisCourse}) {
 
-    const [showModal, setModal] = useState(false)
-    const courses = [{ id: "101", title: "Subject Guide", instructorId: "1001" }, { id: "102", title: "Technologies", instructorId: "1002" }, { id: "103", title: "Certifications", instructorId: "1003" }];
+    {/*const [showModal, setModal] = useState(false)*/}
 
     return (
         <>
-            <div className='flex justify-between items-center mx-4 md:mx-10 my-4 md:my-6'>
-                <p className="flex text-md md:text-lg lg:text-2xl font-bold font-sans text-gray-700">Courses</p>
-                <button onClick={() => setModal(!showModal)} type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-xs md:text-md px-2 md:px-5 py-2.5 text-center inline-flex items-center">
+            <div className='flex justify-between items-center mx-4 md:mx-10'>
+                <p className="flex text-md md:text-lg lg:text-2xl font-bold font-sans text-gray-700">{courses.title} Course</p>
+                {/* <button onClick={() => setModal(!showModal)} type="button" class="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-xs md:text-md px-2 md:px-5 py-2.5 text-center inline-flex items-center">
                     <TbPlus className='mx-1 md:mx-2' />
                     Add New Course
-                </button>
+                </button> */}
             </div>
 
 
-            {
+            {/* {
                 showModal && <>
                     <div
                         className="justify-center items-center flex overflow-x-hidden overflow-y-auto backdrop-brightness-50 backdrop-blur-sm fixed inset-0 z-50"
                     >
                         <div className="relative w-full mx-10 md:mx-72 my-4">
-                            {/*content*/}
+                       
                             <div className="border-0 top-2 rounded-lg shadow-lg relative flex flex-col w-full bg-white">
-                                {/*header*/}
+                              
                                 <div class="relative mx-4 -mt-4 mb-4 grid h-20 place-items-center overflow-hidden rounded-xl bg-gradient-to-tr from-pink-600 to-pink-400 bg-clip-border text-white shadow-lg shadow-pink-500/40">
                                     <h3 class="block font-sans text-md md:text-xl lg:text-3xl font-semibold leading-snug tracking-normal text-white antialiased">
                                         Add New Course
                                     </h3>
                                 </div>
-                                {/*body*/}
+                                
                                 <div className="relative py-3 px-8 mx-6 flex-auto">
                                     <form>
                                         <div class="flex flex-col gap-4 p-4">
-                                
+
                                             <div class="relative h-11 w-full min-w-[200px]">
                                                 <input
                                                     class="peer h-full w-full rounded-md border border-gray-500 bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-900 transition-all focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
@@ -49,7 +48,7 @@ function InstructorDashboard() {
                                                 </label>
                                             </div>
                                             <div class="relative h-60 w-full min-w-[200px]">
-                                                <textarea  
+                                                <textarea
                                                     class="peer h-full w-full rounded-md border border-gray-500 bg-transparent px-3 py-3 font-sans text-sm font-normal text-gray-900 transition-all focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                     placeholder=" "
                                                 />
@@ -60,7 +59,7 @@ function InstructorDashboard() {
                                         </div>
                                     </form>
                                 </div>
-                                {/*footer*/}
+                                
                                 <div className="flex items-center justify-end p-3 border-t border-solid border-slate-200 rounded-b">
                                     <button
                                         className="text-pink-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -81,20 +80,15 @@ function InstructorDashboard() {
                         </div>
                     </div>
                 </>
-            }
+            } */ }
 
-            <hr class="w-auto h-0.5 my-2 mx-4 md:mx-6 bg-gray-300 border-0 rounded" />
+            <hr className="w-auto h-0.5 my-2 mx-4 md:mx-6 bg-gray-300 border-0 rounded" />
 
-            {
-                courses.map(course => {
 
-                    return (
-                        <>
-                            <CoursesUtilities course={course} key={course.id} />
-                        </>
-                    )
-                })
-            }
+            <CoursesUtilities course={courses} key={courses.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>
+
+
+
         </>
     )
 }
