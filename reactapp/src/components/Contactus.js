@@ -50,6 +50,7 @@ function Contactus() {
     <div className="contact">
       <h1>Send a message to us</h1>
       <form onSubmit={handleSubmit}>
+      
          <input placeholder="Name" type="text" value={name} onChange={(e) => setName(e.target.value)}/>
          <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
          <input placeholder="Subject" type="text" value={subject} onChange={(e) => setSubject(e.target.value)}/>
