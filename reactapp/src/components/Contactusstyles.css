@@ -1,14 +1,32 @@
 .contact{
-    margin:4rem 6rem;
+    margin:5.5rem 6rem;
+    /* margin-top:2rem; */
     color:#2a2a2a;
     margin-left: 3rem;
+   
 }
+.contact h1 {
+    display: block;
+    /* text-align: center; */
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .contact button {
+    display: inline;
+    border: 1px solid #151414;
+    background-color: #a7c3d5;
+    padding: 10px 20px;
+    /* width:100px; */
+    border-radius: 5px;
+  }
 .contact form{
     padding-top:3rem;
     display: flex;
     flex-direction: column;
     width:50%;
     margin:auto;
+    /* animation: fadeOut 3s ease-in-out; */
+    
 }
 .contact input{
     height:3rem;
@@ -16,6 +34,9 @@
     margin-bottom: 2rem;
     border-radius: .3rem;
     border-color: 1px solid #000;
+    /* border:solid black; */
+    border: 1px solid #151414;
+    /* animation: fadeOut 3s ease-in-out; */
 }
 .contact textarea{
     /* height:3rem; */
@@ -23,11 +44,14 @@
     margin-bottom: 2rem;
     border-radius: .3rem;
     border-color: 1px solid #000;
+    /* border:solid black; */
+    border: 1px solid #151414;
 }
 .contact button{
     display: inline;
 
 }
+
 @media screen and (max-width:850px) {
     
     .contact{
@@ -39,3 +63,12 @@
         width:90%;
     }
 }
+.radio-container {
+    display: flex;
+    align-items: center;
+    /* border: #000; */
+  }
+  
+  .radio-container input[type="radio"] {
+    margin-right: 10px;
+  }
