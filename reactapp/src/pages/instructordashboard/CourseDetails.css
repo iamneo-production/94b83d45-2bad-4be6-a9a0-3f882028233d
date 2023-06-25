@@ -14,7 +14,7 @@
   
   .coursedetails-detailscontainer {
     display: flex;
-    margin-top: 40px;
+    margin-top: 0px;
     background-color: rgb(247,249,252);
     margin-left: 0px;
     width: calc(100% - 125px);

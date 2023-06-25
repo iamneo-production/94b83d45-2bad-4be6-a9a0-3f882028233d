@@ -34,12 +34,12 @@ public class CourseController {
         return courseService.getCourseById(courseId);
     }
     @DeleteMapping("/courses/{courseId}")
-    public void delcourse(@PathVariable int courseId){
-        courseService.delCourseById(courseId);
+    public ResponseEntity<?> delcourse(@PathVariable int courseId){
+       return courseService.delCourseById(courseId);
         
     }
     @PutMapping("/courses/{courseId}")
-    public String updateCourse(@PathVariable("courseId") int courseId, @RequestBody Course course){
+    public ResponseEntity<?> updateCourse(@PathVariable("courseId") int courseId, @RequestBody Course course){
         return courseService.updatecourses(courseId, course);
 }
 }

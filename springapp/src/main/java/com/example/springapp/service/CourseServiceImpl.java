@@ -1,9 +1,11 @@
 package com.example.springapp.service;
+import org.springframework.transaction.annotation.Transactional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.*;
 import com.example.springapp.repository.CourseRepo;
+import com.example.springapp.repository.EnrollmentRepo;
 import com.example.springapp.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,8 @@ import com.example.springapp.dto.CourseDto;
 public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseRepo courseRepo;
-
+    @Autowired
+    EnrollmentRepo enrollRepo;
     public List<CourseDto> cousre() {
         List<Course> courseList = courseRepo.findAll();
         List<CourseDto> result = new ArrayList<>();
@@ -55,25 +58,34 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void delCourseById(int courseId) {
-        courseRepo.deleteById(courseId);
+    @Transactional
+    public ResponseEntity<?> delCourseById(int courseId) {
+        Optional<Course> course=courseRepo.findById(courseId);
+        if(course.isEmpty()){
+            return new ResponseEntity<>("Course not present",HttpStatus.BAD_REQUEST);
+        }
+        
+        enrollRepo.deleteByCourseId(courseId);
+        courseRepo.delete(course.get());
+
+        return new ResponseEntity<>("Course deleted successfully",HttpStatus.OK);
     }
 
     @Override
-    public String updatecourses(int courseId, Course course) {
+    public ResponseEntity<?> updatecourses(int courseId, Course course) {
         Optional<Course> current = courseRepo.findById(courseId);
         if (current.isPresent()) {
             Course newCourse = current.get();
-            if (!"".equals(course.getTitle())) {
+            if (course.getTitle()!=null && !"".equals(course.getTitle())) {
                 newCourse.setTitle(course.getTitle());
             }
-            if (!"".equals(course.getDescription())) {
+            if (course.getDescription()!=null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
             courseRepo.save(newCourse);
-            return "Course Updated Successfully";
+            return new ResponseEntity<>("Course Updated Successfully",HttpStatus.OK);
         }
-        return "Course Not Updated";
+        return new ResponseEntity<>("Course Not Updated",HttpStatus.BAD_REQUEST);
 
     }
 }

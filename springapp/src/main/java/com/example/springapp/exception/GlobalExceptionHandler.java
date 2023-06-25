@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Map<String,String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
             String fieldName = ((FieldError) error).getField();
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(UserAlreadyExistException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<Object> handleUserAlreadyExistException(UserAlreadyExistException e) {
+    public ResponseEntity<String> handleUserAlreadyExistException(UserAlreadyExistException e) {
         String message=e.getMessage();
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
