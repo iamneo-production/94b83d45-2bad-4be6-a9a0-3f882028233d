@@ -9,7 +9,6 @@ import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBin5Line } from 'react-icons/ri'
 
 
-
 function AssignmentsForm() {
     const [fileName, setFileName] = useState("No File Selected");
     const [showAlert, setAlert] = useState(false)
@@ -46,7 +45,7 @@ function AssignmentsForm() {
                     </div>
                     {/*body*/}
 
-                    <main className='flex place-content-center mt-8'>
+                    <div className='flex place-content-center mt-8 mx-16'>
                         <form onClick={() => document.querySelector(".input-field").click()}
                             className='flex justify-center items-center border-dashed border-2 h-[300px] w-[350px] border-black cursor-pointer rounded-lg'>
                             <input className="input-field" type="file" accept=".pdf,.doc,.docx" hidden onChange={({ target: { files } }) => {
@@ -90,13 +89,12 @@ function AssignmentsForm() {
 
                             }
                         </form>
-                    </main>
+                    </div>
                     <div className='flex justify-between items-center p-4 mt-4 mb-10 mx-16 bg-gray-100'>
-
-                        <span className='flex text-md font-medium'>
+                        <div className='flex text-md font-medium'>
                             <AiFillFileText className='text-blue-400 h-6 w-6' />
                             <p className='w-84 truncate'>{fileName}</p>
-                        </span>
+                        </div>
                         <MdDelete className='h-6 w-6' onClick={() => {
                             setFileName("No File Selected")
                             setFile(null)
