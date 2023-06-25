@@ -6,7 +6,6 @@ import BASE_URL from '../../api/axios';
 
 function AddCourse({setIsCreateCourse}) {
   const [errormessage,setErrorMessage]=useState("");
-
   const [data, setData] = useState({
     "id": "",
     "title": "",

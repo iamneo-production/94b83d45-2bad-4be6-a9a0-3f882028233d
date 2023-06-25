@@ -11,7 +11,7 @@ public class User{
     private String password;
     private String role;
     @OneToMany(fetch =FetchType.EAGER, mappedBy="user")
-    //user refers the user attribute in the Enrollment entity
+    //user attribute in Entollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     public User() {
     }

@@ -6,5 +6,5 @@ import com.example.springapp.dto.*;
 public interface UserService{
     public Map<String,String> getUserDetails(int id);
     public ResponseEntity<?> updateUser(UserRegisterDto user, int id);
-    
+    public ResponseEntity<?> deleteUser(int id);
 }
