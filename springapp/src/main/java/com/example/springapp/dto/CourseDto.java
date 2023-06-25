@@ -8,14 +8,17 @@ public class CourseDto {
 
     private int instructorId;
 
+    private int price;
+
     public CourseDto() {
     }
 
-    public CourseDto(int id, String title, String description, int instructorId) {
+    public CourseDto(int id, String title, String description, int instructorId, int price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
+        this.price=price;
     }
 
     public int getId() {
@@ -49,4 +52,14 @@ public class CourseDto {
     public void setInstructorId(int instructorId) {
         this.instructorId = instructorId;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    
 }

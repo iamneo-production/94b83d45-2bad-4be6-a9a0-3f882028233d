@@ -7,7 +7,7 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
 
   
 
-  const [data, setData] = useState({ id: '', title: '', description: '' });
+  const [data, setData] = useState({ id: '', title: '', description: '',price:'' });
 
 
   useEffect(() => {
@@ -84,6 +84,21 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
                 setData((prevState) => ({
                   ...prevState,
                   description: e.target.value,
+                }))
+              }
+            />
+          </div>
+
+          <div>
+            <label>Price</label>
+            <input
+              type="text"
+              id="price"
+              value={data.price}
+              onChange={(e) =>
+                setData((prevState) => ({
+                  ...prevState,
+                  price: e.target.value,
                 }))
               }
             />

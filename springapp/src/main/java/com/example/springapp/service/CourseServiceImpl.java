@@ -27,6 +27,7 @@ public class CourseServiceImpl implements CourseService {
             course.setTitle(currCourse.getTitle());
             course.setDescription(currCourse.getDescription());
             course.setInstructorId(currCourse.getInstructorId());
+            course.setPrice(currCourse.getPrice());
             result.add(course);
         }
         return result;
@@ -54,6 +55,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTitle(currCourse.getTitle());
         course.setDescription(currCourse.getDescription());
         course.setInstructorId(currCourse.getInstructorId());
+        course.setPrice(currCourse.getPrice());
         return new ResponseEntity<>(course,HttpStatus.OK);
     }
 
@@ -82,10 +84,13 @@ public class CourseServiceImpl implements CourseService {
             if (course.getDescription()!=null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
+            if (course.getPrice()>=0 && !"".equals(course.getPrice())) {
+                newCourse.setPrice(course.getPrice());
+            }
             courseRepo.save(newCourse);
             return new ResponseEntity<>("Course Updated Successfully",HttpStatus.OK);
         }
-        return new ResponseEntity<>("Course Not Updated",HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Course doesn't exist with course id "+ courseId,HttpStatus.BAD_REQUEST);
 
     }
 }

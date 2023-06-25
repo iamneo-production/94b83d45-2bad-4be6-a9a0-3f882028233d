@@ -12,16 +12,19 @@ public class Course {
 
     private int instructorId;
     
+    private int price;
+
     @OneToMany(mappedBy="course")
     //course attribute in Entollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     
 
-    public Course(int id, String title, String description, int instructorId) {
+    public Course(int id, String title, String description, int instructorId, int price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
+        this.price=price;
     }
 
     public Course() {
@@ -59,6 +62,14 @@ public class Course {
         this.instructorId = instructorId;
     }
     
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public List<Enrollment> getEnrollments() {
         return enrollments;
     }

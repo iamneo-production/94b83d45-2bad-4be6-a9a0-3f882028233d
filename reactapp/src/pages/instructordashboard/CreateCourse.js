@@ -11,6 +11,7 @@ function AddCourse({setIsCreateCourse}) {
     "title": "",
     "description": "",
     "instructorId": 923,
+    "price":""
   });
 
   
@@ -94,6 +95,20 @@ function AddCourse({setIsCreateCourse}) {
                 setData((prevState) => ({
                   ...prevState,
                   description: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div>
+            <label>Price</label>
+            <input
+              type="text"
+              id="price"
+              value={data.price}
+              onChange={(e) =>
+                setData((prevState) => ({
+                  ...prevState,
+                  price: e.target.value,
                 }))
               }
             />
