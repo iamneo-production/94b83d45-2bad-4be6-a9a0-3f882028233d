@@ -1,6 +1,8 @@
 package com.example.springapp.model;
+
 import javax.persistence.*;
 import java.util.List;
+
 @Entity
 public class Course {
     @Id
