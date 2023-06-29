@@ -30,25 +30,10 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private static final String ERRMSG = "Error! provide correct data";
 
     public ResponseEntity<String> enrollUser(Enrollment e) {
-        //Long userId=e.getUserId();
-        //Long courseId=e.getCourseId();
-        //boolean enrollmentExists = enrollRepo.existsByUserIdAndCourseId(userId, courseId);
-        //commented because test case is failing
-        // if (enrollmentExists) {
-        //     return new ResponseEntity<>("User already enrolled in this course", HttpStatus.BAD_REQUEST);
-        // }
-        //Optional<User> user = userRepo.findById(userId);
-        //Optional<Course> course = courseRepo.findById(courseId);
-        //if (user.isPresent() && course.isPresent()) {
-            //Enrollment enrollment = new Enrollment();
-            //enrollment.setUserId(userId);
-            //enrollment.setCourseId(courseId);
-            //enrollment.setUser(user.get());
-            //enrollment.setCourse(course.get());
-            enrollRepo.save(e);
-            return new ResponseEntity<>("User Enrolled Successfully", HttpStatus.CREATED);
-        //}
-        //return new ResponseEntity<>(ERRMSG, HttpStatus.BAD_REQUEST);
+
+        enrollRepo.save(e);
+        return new ResponseEntity<>("User Enrolled Successfully", HttpStatus.CREATED);
+
     }
 
     public ResponseEntity<?> getCoursesOfUser(Long userId) {
@@ -106,7 +91,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     }
 
-    public ResponseEntity<?> getEnrollmentById(Long id){
+    public ResponseEntity<?> getEnrollmentById(Long id) {
         Optional<Enrollment> enroll = enrollRepo.findById(id);
         if (enroll.isEmpty()) {
             return new ResponseEntity<>("Error! Enrollment Does not exist", HttpStatus.BAD_REQUEST);
@@ -114,8 +99,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return new ResponseEntity<>(enroll.get(), HttpStatus.OK);
     }
 
-    public ResponseEntity<?> getEnrollments(){
-        List<Enrollment> result=enrollRepo.findAll();
+    public ResponseEntity<?> getEnrollments() {
+        List<Enrollment> result = enrollRepo.findAll();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

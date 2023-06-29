@@ -28,23 +28,10 @@ public class EnrollmentController{
     }
 
 
-    //Get the List of courses for a particular user
-    // @GetMapping("/users/{user_id}/enrollments")
-    // public ResponseEntity<?> getCoursesOfUser(@PathVariable("user_id") Long userId){
-    //         return enrollmentService.getCoursesOfUser(userId);
-    // }
+   
 
     
-    //Get the List Of user erolled in a particular course
-    // @GetMapping("/courses/{course_id}/enrollments")
-    // public ResponseEntity<?> getUsersEnrolledInACourse(@PathVariable("course_id") Long courseId){
-    //     return enrollmentService.getUsersEnrolledInACourse(courseId);
-    // }
-
-    // @DeleteMapping("/courses/{course_id}/enrollments/{user_id}")
-    // public ResponseEntity<?> deleteEnrollment(@PathVariable("course_id") Long courseId, @PathVariable("user_id") Long userId) {
-    //     return enrollmentService.deleteEnrollment(courseId,userId);
-    // }
+    
 
     @DeleteMapping("/enrollments")
     public ResponseEntity<?> deleteEnrollment(@RequestParam Long id){
@@ -54,10 +41,10 @@ public class EnrollmentController{
     
     
     //Get the List of courses for a particular user
-    // @GetMapping("/enrollments")
-    // public ResponseEntity<?> getCoursesOfUser(@RequestParam Long userId){
-    //         return enrollmentService.getCoursesOfUser(userId);
-    // }
+    @GetMapping("/enrollments")
+    public ResponseEntity<?> getCoursesOfUser(@RequestParam Long userId){
+            return enrollmentService.getCoursesOfUser(userId);
+    }
     
     @GetMapping("/enrollment")
     public ResponseEntity<?> getEnrollments(){

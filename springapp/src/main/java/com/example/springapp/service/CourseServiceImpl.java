@@ -35,14 +35,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public ResponseEntity<?> saveCourse(Course course) {
-        //commented because the test case is failing for course creation
-        //Optional<Course> existingCourse = courseRepo.findById(course.getId());
-        //if (existingCourse.isEmpty()) {
+       
             courseRepo.save(course);
            
             return new ResponseEntity<>(course, HttpStatus.CREATED);
-        //}
-        //throw new CourseAlreadyExistException("Course Id Already Exists");
     }
 
     @Override
