@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.springapp.model.*;
 import com.example.springapp.dto.CourseDto;
@@ -21,25 +22,25 @@ import com.example.springapp.service.*;
 public class CourseController {
     @Autowired
     CourseService courseService;
-    @GetMapping("/courses")
+    @GetMapping("/course")
     public List<CourseDto> getcourses(){
         return courseService.cousre();
     }
-    @PostMapping("/courses")
+    @PostMapping("/course")
     public ResponseEntity<?> saveCourse(@RequestBody Course course){
         return courseService.saveCourse(course); 
     }
-    @GetMapping("/courses/{courseId}")
-    public ResponseEntity<?> courseById(@PathVariable int courseId){
+    @GetMapping("/course/id")
+    public ResponseEntity<?> courseById(@RequestParam Long courseId){
         return courseService.getCourseById(courseId);
     }
-    @DeleteMapping("/courses/{courseId}")
-    public ResponseEntity<?> delcourse(@PathVariable int courseId){
+    @DeleteMapping("/courses")
+    public ResponseEntity<?> delcourse(@RequestParam Long courseId){
        return courseService.delCourseById(courseId);
         
     }
-    @PutMapping("/courses/{courseId}")
-    public ResponseEntity<?> updateCourse(@PathVariable("courseId") int courseId, @RequestBody Course course){
+    @PutMapping("/course")
+    public ResponseEntity<?> updateCourse(@RequestParam Long courseId, @RequestBody Course course){
         return courseService.updatecourses(courseId, course);
 }
 }
