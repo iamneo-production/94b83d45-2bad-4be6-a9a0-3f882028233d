@@ -31,14 +31,14 @@ public class QuizService {
 
     public ResponseEntity<?> saveQuiz(Quiz quiz){
         quizRepository.save(quiz);
-        return ResponseEntity.Status(HttpStatus.OK).body(quiz);
+        return ResponseEntity.status(HttpStatus.OK).body(quiz);
     }
 
     public ResponseEntity<?> updateQuiz(int id, Quiz quiz){
         Object o = quizRepository.findById(id);
         if(o != null){
-            quizRepo.save(quiz);
-            return ResponseEntity/Status(HttpStatus.OK).body(quiz);
+            quizRepository.save(quiz);
+            return ResponseEntity.status(HttpStatus.OK).body(quiz);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
@@ -49,7 +49,7 @@ public class QuizService {
 
         if(quiz != null){
             quizRepository.delete(quiz);
-            return ResponseEntity.status(HttpStatus.OK).body(); 
+            return ResponseEntity.status(HttpStatus.OK).build(); 
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }

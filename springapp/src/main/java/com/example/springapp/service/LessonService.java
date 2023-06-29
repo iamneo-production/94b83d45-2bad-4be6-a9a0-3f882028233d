@@ -13,15 +13,15 @@ import com.example.springapp.model.Lesson;
 public class LessonService {
 
     @Autowired
-    private LessonRepository lessonRepo;
+    private LessonRepository lessonRepository;
 
     public ResponseEntity<?> getAllLessons(){
-        List<Lesson> list = lessonRepo.findAll();
+        List<Lesson> list = lessonRepository.findAll();
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
     public ResponseEntity<?> getLessonById(Long id) {
-        Object o = lessonRepo.findById(id);
+        Object o = lessonRepository.findById(id);
         if (o != null) {
             return ResponseEntity.status(HttpStatus.OK).body(o);
         }
@@ -34,20 +34,20 @@ public class LessonService {
     }
 
     public ResponseEntity<?> updateLesson(Lesson lesson, Long id) {
-        Object o = lessonRepo.findById(id);
+        Object o = lessonRepository.findById(id);
         if (o != null) {
-            lessonRepo.save(lesson);
+            lessonRepository.save(lesson);
             return ResponseEntity.status(HttpStatus.OK).body(o);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     public ResponseEntity<?> deleteLessonById(Long id) {
-        Object o = lessonRepo.findById(id);
+        Object o = lessonRepository.findById(id);
         Lesson l = (Lesson)o;
         if (l != null) {
             lessonRepository.delete(l);
-            return ResponseEntity.status(HttpStatus.OK).body();
+            return ResponseEntity.status(HttpStatus.OK).build();
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
