@@ -86,7 +86,7 @@ public class CourseServiceImpl implements CourseService {
             if (course.getDescription()!=null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
-            if (course.getPrice()>=0 && !"".equals(course.getPrice())) {
+            if (course.getPrice()>=0) {
                 newCourse.setPrice(course.getPrice());
             }
             courseRepo.save(newCourse);
