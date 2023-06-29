@@ -12,9 +12,9 @@ import com.example.springapp.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.springapp.exception.*;
-import com.example.springapp.repository.EnrollmentRepo;
+import com.example.springapp.repository.EnrollmentRepository;
 import com.example.springapp.model.Enrollment;
-import com.example.springapp.repository.CourseRepo;
+import com.example.springapp.repository.CourseRepository;
 import com.example.springapp.model.Course;
 
 @Service
@@ -22,14 +22,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
     @Autowired
-    private EnrollmentRepo enrollRepo;
+    private EnrollmentRepository enrollRepo;
     @Autowired
-    private CourseRepo courseRepo;
+    private CourseRepository courseRepo;
 
     @Override
-    public Map<String, String> getUserDetails(int id) {
+    public Map<String, String> getUserDetails(Long id) {
         Optional<User> data = userRepo.findById(id);
         Map<String, String> userdetails = new HashMap<>();
         if (data.isPresent()) {
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
         return userdetails;
     }
 
-    public ResponseEntity<?> updateUser(UserRegisterDto user, int id) {
+    public ResponseEntity<?> updateUser(UserRegisterDto user, Long id) {
         Optional<User> currUser = userRepo.findById(id);
         if (currUser.isEmpty()) {
             return new ResponseEntity<>("Cant update the user - User doesn't Exist with user id " + id,
@@ -69,12 +69,12 @@ public class UserServiceImpl implements UserService {
         return new ResponseEntity<>("User details updated", HttpStatus.OK);
     }
 
-    public ResponseEntity<?> deleteUser(int id) {
+    public ResponseEntity<?> deleteUser(Long id) {
         Optional<User> currUser = userRepo.findById(id);
         if (currUser.isEmpty()) {
             return new ResponseEntity<>("User doesn't Exist with user id " + id, HttpStatus.BAD_REQUEST);
         }
-        // the user may or may not enroll into a course, if the user is enrolled all the
+        // the user may or may not enroll Longo a course, if the user is enrolled all the
         // enrollments need to be deleted
         List<Enrollment> enroll = enrollRepo.findByUserId(id);
         for (Enrollment e : enroll) {

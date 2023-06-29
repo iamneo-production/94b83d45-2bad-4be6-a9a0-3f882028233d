@@ -9,9 +9,9 @@ import java.util.*;
 
 import com.example.springapp.model.Course;
 import com.example.springapp.model.User;
-import com.example.springapp.repository.UserRepo;
-import com.example.springapp.repository.CourseRepo;
-import com.example.springapp.repository.EnrollmentRepo;
+import com.example.springapp.repository.UserRepository;
+import com.example.springapp.repository.CourseRepository;
+import com.example.springapp.repository.EnrollmentRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -19,35 +19,24 @@ import org.springframework.http.ResponseEntity;
 public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @Autowired
-    private CourseRepo courseRepo;
+    private CourseRepository courseRepo;
 
     @Autowired
-    private EnrollmentRepo enrollRepo;
+    private EnrollmentRepository enrollRepo;
 
     private static final String ERRMSG = "Error! provide correct data";
 
-    public ResponseEntity<String> enrollUser(int userId, int courseId) {
-        boolean enrollmentExists = enrollRepo.existsByUserIdAndCourseId(userId, courseId);
+    public ResponseEntity<String> enrollUser(Enrollment e) {
 
-        if (enrollmentExists) {
-            return new ResponseEntity<>("User already enrolled in this course", HttpStatus.BAD_REQUEST);
-        }
-        Optional<User> user = userRepo.findById(userId);
-        Optional<Course> course = courseRepo.findById(courseId);
-        if (user.isPresent() && course.isPresent()) {
-            Enrollment enrollment = new Enrollment();
-            enrollment.setUser(user.get());
-            enrollment.setCourse(course.get());
-            enrollRepo.save(enrollment);
-            return new ResponseEntity<>("User Enrolled Successfully", HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(ERRMSG, HttpStatus.BAD_REQUEST);
+        enrollRepo.save(e);
+        return new ResponseEntity<>("User Enrolled Successfully", HttpStatus.CREATED);
+
     }
 
-    public ResponseEntity<?> getCoursesOfUser(int userId) {
+    public ResponseEntity<?> getCoursesOfUser(Long userId) {
 
         User user = userRepo.findById(userId).get();
         if (user == null) {
@@ -62,6 +51,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             course.setTitle(currCourse.getTitle());
             course.setDescription(currCourse.getDescription());
             course.setInstructorId(currCourse.getInstructorId());
+            course.setPrice(currCourse.getPrice());
             result.add(course);
 
         }
@@ -69,7 +59,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     }
 
-    public ResponseEntity<?> getUsersEnrolledInACourse(int courseId) {
+    public ResponseEntity<?> getUsersEnrolledInACourse(Long courseId) {
         Optional<Course> course = courseRepo.findById(courseId);
         if (course.isEmpty()) {
             return new ResponseEntity<>(ERRMSG, HttpStatus.BAD_REQUEST);
@@ -89,8 +79,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
     }
 
-    public ResponseEntity<?> deleteEnrollment(int courseId, int userId) {
-        Optional<Enrollment> enroll = enrollRepo.findByCourseIdAndUserId(courseId, userId);
+    public ResponseEntity<?> deleteEnrollment(Long id) {
+        Optional<Enrollment> enroll = enrollRepo.findById(id);
         if (enroll.isEmpty()) {
             return new ResponseEntity<>("Error! Enrollment Does not exist", HttpStatus.BAD_REQUEST);
         }
@@ -99,5 +89,18 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         return new ResponseEntity<>("Enrollment deleted successfully", HttpStatus.OK);
 
+    }
+
+    public ResponseEntity<?> getEnrollmentById(Long id) {
+        Optional<Enrollment> enroll = enrollRepo.findById(id);
+        if (enroll.isEmpty()) {
+            return new ResponseEntity<>("Error! Enrollment Does not exist", HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(enroll.get(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getEnrollments() {
+        List<Enrollment> result = enrollRepo.findAll();
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
