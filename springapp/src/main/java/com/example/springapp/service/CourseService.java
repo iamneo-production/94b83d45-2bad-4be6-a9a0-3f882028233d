@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 public interface CourseService {
     public List<CourseDto> cousre();
     public ResponseEntity<?> saveCourse(Course course);
-    public ResponseEntity<?> getCourseById(int courseId);
-    public ResponseEntity<?> delCourseById(int courseId);
-    public ResponseEntity<?> updatecourses(int courseId, Course c);
+    public ResponseEntity<?> getCourseById(Long courseId);
+    public ResponseEntity<?> delCourseById(Long courseId);
+    public ResponseEntity<?> updatecourses(Long courseId, Course c);
 }
