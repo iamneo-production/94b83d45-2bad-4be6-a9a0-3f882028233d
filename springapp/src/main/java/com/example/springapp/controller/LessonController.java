@@ -15,51 +15,50 @@ import com.example.springapp.service.LessonService;
 import com.example.springapp.model.Lesson;
 
 @RestController
-
 public class LessonController{
 
     @Autowired
-    private LessonService lessonServices;
+    private LessonService lessonService;
 
     public LessonController(){
     }
 
-    public LessonController(LessonService lessonServices) {
-        this.lessonServices = lessonServices;
+    public LessonController(LessonService lessonService) {
+        this.lessonService = lessonService;
     }
 
-    public LessonService getLessonServices() {
-        return lessonServices;
+    public LessonService getLessonService() {
+        return lessonService;
     }
 
-    public void setLessonServices(LessonService lessonServices) {
-        this.lessonServices = lessonServices;
+    public void setLessonService(LessonService lessonService) {
+        this.lessonService = lessonService;
     }    
 
     @GetMapping("/lesson")
     public ResponseEntity<?> getAllLessons(){
-        return lessonServices.getAllLessons();
+        return lessonService.getAllLessons();
     } 
 
     @GetMapping("/lesson/id")
     public ResponseEntity<?> getLessonById(@RequestParam Long lessonId){
-        return lessonServices.getLessonById(lessonId);
+        return lessonService.getLessonById(lessonId);
     } 
     
     @PostMapping("/lesson")
     public ResponseEntity<?> saveLesson(@RequestBody Lesson lesson){
-        return lessonServices.saveLesson(lesson);
+        return lessonService.saveLesson(lesson);
     }
 
     @DeleteMapping("/lessons")
     public ResponseEntity<?> deleteLessonById(@RequestParam Long lessonId){
-        return lessonServices.deleteLessonById(lessonId);
+        return lessonService.deleteLessonById(lessonId);
     }
 
     @PutMapping("/lessons")
     public ResponseEntity<?> updateLessonById(@RequestBody Lesson lesson){
         Long lessonId=lesson.getId();
-        return lessonServices.updateLesson(lesson, lessonId);
+        return lessonService.updateLesson(lesson, lessonId);
     }
     
 }   
