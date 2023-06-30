@@ -26,7 +26,7 @@ const Main=()=>{
                 </div>
             </div>
             <div className='cataloguecoursecontainer'>
-                {contents.filter(contents=>(contents.name.toLowerCase().includes(query.toLowerCase()) || contents.instructor.toLowerCase().includes(query.toLowerCase()) || contents.description.toLowerCase().includes(query.toLowerCase())))
+                {contents.filter(content=>(content.name.toLowerCase().includes(query.toLowerCase()) || content.instructor.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))
                 .map((contents) => (
                     <Courses
                         key={contents.id}
