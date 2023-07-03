@@ -44,4 +44,3 @@ public class CourseController {
         return courseService.updatecourses(courseId, course);
 }
 }
-
