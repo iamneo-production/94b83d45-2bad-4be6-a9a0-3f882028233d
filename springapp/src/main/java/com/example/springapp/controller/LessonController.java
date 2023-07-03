@@ -8,56 +8,57 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.springapp.service.LessonServices;
+import com.example.springapp.service.LessonService;
 import com.example.springapp.model.Lesson;
 
 @RestController
-@RequestMapping("/courses/{courseId}")
 public class LessonController{
 
     @Autowired
-    private LessonServices lessonServices;
+    private LessonService lessonService;
 
     public LessonController(){
     }
 
-    public LessonController(LessonServices lessonServices) {
-        this.lessonServices = lessonServices;
+    public LessonController(LessonService lessonService) {
+        this.lessonService = lessonService;
     }
 
-    public LessonServices getLessonServices() {
-        return lessonServices;
+    public LessonService getLessonService() {
+        return lessonService;
     }
 
-    public void setLessonServices(LessonServices lessonServices) {
-        this.lessonServices = lessonServices;
+    public void setLessonService(LessonService lessonService) {
+        this.lessonService = lessonService;
     }    
 
-    @GetMapping("/lessons")
+    @GetMapping("/lesson")
     public ResponseEntity<?> getAllLessons(){
-        return lessonServices.getAllLessons();
+        return lessonService.getAllLessons();
     } 
 
-    @GetMapping("/lessons/{lessonId}")
-    public ResponseEntity<?> getLessonById(@PathVariable int lessonId){
-        return lessonServices.getLessonById(lessonId);
+    @GetMapping("/lesson/id")
+    public ResponseEntity<?> getLessonById(@RequestParam Long lessonId){
+        return lessonService.getLessonById(lessonId);
     } 
     
-    @PostMapping("/lessons")
+    @PostMapping("/lesson")
     public ResponseEntity<?> saveLesson(@RequestBody Lesson lesson){
-        return lessonServices.saveLesson(lesson);
+        return lessonService.saveLesson(lesson);
     }
 
-    @DeleteMapping("/lessons/{lessonId}")
-    public ResponseEntity<?> deleteLessonById(@PathVariable int lessonId){
-        return lessonServices.deleteLessonById(lessonId);
+    @DeleteMapping("/lessons")
+    public ResponseEntity<?> deleteLessonById(@RequestParam Long lessonId){
+        return lessonService.deleteLessonById(lessonId);
     }
 
-    @PutMapping("/lessons/{lessonId}")
-    public ResponseEntity<?> updateLessonById(@PathVariable int lessonId, @RequestBody Lesson lesson){
-        return lessonServices.updateLesson(lesson, lessonId);
+    @PutMapping("/lessons")
+    public ResponseEntity<?> updateLessonById(@RequestBody Lesson lesson){
+        Long lessonId=lesson.getId();
+        return lessonService.updateLesson(lesson, lessonId);
     }
     
 }   
