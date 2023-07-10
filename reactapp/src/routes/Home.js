@@ -17,7 +17,7 @@ function Home(){
         title="Your Success based on Your Learning"
         text="Choose your favourite Course"
         buttonText="Course Plan"
-        url="/catalogue"
+        url="/"
         btnClass="show"
         />
         {/* <i class="fa-solid fa-cart-shopping"></i> */}
