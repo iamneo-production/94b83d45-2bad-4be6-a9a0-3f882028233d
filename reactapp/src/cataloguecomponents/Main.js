@@ -24,6 +24,11 @@ const Main=()=>{
                     </div>
                     
                 </div>
+                <div className='back'>
+                    <a href="/">
+                        <button>Back to Home</button>
+                    </a>
+                </div>
             </div>
             <div className='cataloguecoursecontainer'>
                 {contents.filter(content=>(content.name.toLowerCase().includes(query.toLowerCase()) || content.instructor.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))
