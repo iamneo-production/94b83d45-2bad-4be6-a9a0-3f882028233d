@@ -4,8 +4,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.*;
-import com.example.springapp.repository.CourseRepo;
-import com.example.springapp.repository.EnrollmentRepo;
+import com.example.springapp.repository.CourseRepository;
+import com.example.springapp.repository.EnrollmentRepository;
 import com.example.springapp.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,9 @@ import com.example.springapp.dto.CourseDto;
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
-    CourseRepo courseRepo;
+    CourseRepository courseRepo;
     @Autowired
-    EnrollmentRepo enrollRepo;
+    EnrollmentRepository enrollRepo;
     public List<CourseDto> cousre() {
         List<Course> courseList = courseRepo.findAll();
         List<CourseDto> result = new ArrayList<>();
@@ -35,16 +35,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public ResponseEntity<?> saveCourse(Course course) {
-        Optional<Course> existingCourse = courseRepo.findById(course.getId());
-        if (existingCourse.isEmpty()) {
+       
             courseRepo.save(course);
-            return new ResponseEntity<>("Course Created Successfully", HttpStatus.CREATED);
-        }
-        throw new CourseAlreadyExistException("Course Id Already Exists");
+           
+            return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
 
     @Override
-    public ResponseEntity<?> getCourseById(int courseId) {
+    public ResponseEntity<?> getCourseById(Long courseId) {
         Optional<Course> exist = courseRepo.findById(courseId);
         if(exist.isEmpty()){
             return new ResponseEntity<>("course does not exist with course id: "+" "+ courseId,HttpStatus.BAD_REQUEST);
@@ -61,7 +59,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     @Transactional
-    public ResponseEntity<?> delCourseById(int courseId) {
+    public ResponseEntity<?> delCourseById(Long courseId) {
         Optional<Course> course=courseRepo.findById(courseId);
         if(course.isEmpty()){
             return new ResponseEntity<>("Course not present",HttpStatus.BAD_REQUEST);
@@ -74,7 +72,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public ResponseEntity<?> updatecourses(int courseId, Course course) {
+    public ResponseEntity<?> updatecourses(Long courseId, Course course) {
         Optional<Course> current = courseRepo.findById(courseId);
         if (current.isPresent()) {
             Course newCourse = current.get();
@@ -84,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
             if (course.getDescription()!=null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
-            if (course.getPrice()>=0 && !"".equals(course.getPrice())) {
+            if (course.getPrice()>=0) {
                 newCourse.setPrice(course.getPrice());
             }
             courseRepo.save(newCourse);
