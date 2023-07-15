@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Lesson {
 
     @Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
@@ -14,9 +14,6 @@ public class Lesson {
     private String description;
 
     private Long courseId;
-
-    @ManyToOne
-    private Course c;
 
     public Lesson(){
 
@@ -27,7 +24,6 @@ public class Lesson {
         this.title = title;
         this.description = description;
         this.courseId = courseId;
-        
     }
 
     public Long getId() {
@@ -60,14 +56,6 @@ public class Lesson {
 
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
-	}
-
-	public Course getCourse() {
-		return c;
-	}
-
-	public void setCourse(Course c) {
-		this.c = c;
 	}
 
 }

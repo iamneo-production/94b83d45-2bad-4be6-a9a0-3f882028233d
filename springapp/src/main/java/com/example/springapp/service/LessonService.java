@@ -1,55 +1,92 @@
 package com.example.springapp.service;
 
 import com.example.springapp.repository.CourseRepository;
-import org.springframework.stereotype.Service;
 import com.example.springapp.repository.LessonRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 import com.example.springapp.model.Lesson;
+import com.example.springapp.model.Course;
+import com.example.springapp.dto.LessonDto;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Optional;
+
 
 @Service
 public class LessonService {
 
     @Autowired
     private LessonRepository lessonRepository;
+    
+    @Autowired
+    private CourseRepository courseRepository;
 
     public ResponseEntity<?> getAllLessons(){
-        List<Lesson> list = lessonRepository.findAll();
-        return new ResponseEntity<>(list,HttpStatus.OK);
+        List<Lesson> lessonList = lessonRepository.findAll();
+        List<LessonDto> lessonDtoList = new ArrayList<>();
+        for(Lesson lesson : lessonList){
+            LessonDto lessonDto = new LessonDto();
+            lessonDto.setId(lesson.getId());
+            lessonDto.setTitle(lesson.getTitle());
+            lessonDto.setDescription(lesson.getDescription());
+            lessonDto.setCourseId(lesson.getCourseId());
+            lessonDtoList.add(lessonDto);
+        }
+        return new ResponseEntity<>(lessonDtoList, HttpStatus.OK); //working
     }
 
     public ResponseEntity<?> getLessonById(Long id) {
         Object o = lessonRepository.findById(id);
+        Lesson lesson = (Lesson)o;
         if (o != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(o);
+            LessonDto lessonDto = new LessonDto();
+            lessonDto.setId(lesson.getId());
+            lessonDto.setTitle(lesson.getTitle());
+            lessonDto.setDescription(lesson.getDescription());
+            lessonDto.setCourseId(lesson.getCourseId());
+            return new ResponseEntity<>(lessonDto, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        String s = "Lesson Not Found";
+        return new ResponseEntity<>(s, HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> saveLesson(Lesson lesson) {
+    public ResponseEntity<?> saveLesson(LessonDto lessonDto) {
+        Lesson lesson = new Lesson();
+        lesson.setId(lessonDto.getId());
+        lesson.setTitle(lessonDto.getTitle());
+        lesson.setDescription(lessonDto.getDescription());
+        lesson.setCourseId(lessonDto.getCourseId());
         lessonRepository.save(lesson);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        String s = "Lesson created successfully";
+        return new ResponseEntity<>(s, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> updateLesson(Lesson lesson, Long id) {
-        Object o = lessonRepository.findById(id);
-        if (o != null) {
+    public ResponseEntity<?> updateLesson(LessonDto lessonDto, Long id) {
+        Optional<Lesson>l = lessonRepository.findById(id);
+        if (!l.isEmpty()) {
+            Lesson lesson = new Lesson();
+            lesson.setId(lessonDto.getId());
+            lesson.setTitle(lessonDto.getTitle());
+            lesson.setDescription(lessonDto.getDescription());
+            lesson.setCourseId(lessonDto.getCourseId());
             lessonRepository.save(lesson);
-            return ResponseEntity.status(HttpStatus.OK).body(o);
+            return new ResponseEntity<>(lessonDto, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        String s="lesson not found";
+        return new ResponseEntity<>(s, HttpStatus.NOT_FOUND);
     }
 
     public ResponseEntity<?> deleteLessonById(Long id) {
-        Object o = lessonRepository.findById(id);
-        Lesson l = (Lesson)o;
-        if (l != null) {
-            lessonRepository.delete(l);
-            return ResponseEntity.status(HttpStatus.OK).build();
+        Optional<Lesson> l = lessonRepository.findById(id);
+        if (!l.isEmpty()) {
+            lessonRepository.delete(l.get());
+            String s = "Deleted Successfully";
+            return new ResponseEntity<>(s, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        String s="lesson not found";
+        return new ResponseEntity<>(s, HttpStatus.NOT_FOUND);
     }
 
 }
