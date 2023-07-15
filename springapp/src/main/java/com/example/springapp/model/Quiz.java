@@ -6,9 +6,8 @@ import javax.persistence.*;
 public class Quiz {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int quizId;
-
     private String question;
     private String option1;
     private String option2;
