@@ -13,7 +13,7 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
   useEffect(() => {
     const fetchData=async()=>{
       try {
-       const response = await axios.get(`${BASE_URL}courses/${courseId}`)
+       const response = await axios.get(`${BASE_URL}course/${courseId}`)
         setData(response.data);
       }catch(error){
         console.log(error)}
@@ -25,7 +25,7 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
     event.preventDefault();
     const putData=async()=>{
       try{
-      await  axios.put(`${BASE_URL}courses/${data.id}`, data,)
+      await  axios.put(`${BASE_URL}course/${data.id}`, data,)
       alert("Updated successfully")
       setUpdateCourse(false);
       setThisCourse(true);
