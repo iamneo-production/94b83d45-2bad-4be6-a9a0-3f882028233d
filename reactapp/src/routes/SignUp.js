@@ -134,7 +134,7 @@ function SignUp() {
         <br />
         <br />
         </div>
-                    <button>Sign Up</button>
+                    <button>SignUp</button>
                    
         
         
