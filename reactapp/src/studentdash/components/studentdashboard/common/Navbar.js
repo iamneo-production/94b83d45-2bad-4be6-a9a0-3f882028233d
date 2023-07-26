@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from './SearchBar.js';
+import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 import '../../../assets/styles/Navbar.css'
 // import Logo from '../../../assets/images/iconpng.png';
@@ -15,7 +15,7 @@ const Navbar = () => {
 
         <ul className="navbar-links">
           <li className="navbar-item">
-            <Link to="" className="/home">Home</Link>
+            <Link to="" className="navbar-link">Home</Link>
           </li>
           <li className="navbar-item">
             <Link to="/studentdashboard" className="navbar-link">My Dashoard</Link>
@@ -25,6 +25,9 @@ const Navbar = () => {
           </li>
           <li className="navbar-item">
             <Link to="/notifications" className="navbar-link">Notifications</Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/freqaskque" className="navbar-link">FaQ</Link>
           </li>
           <li className="navbar-item">
             {/* Your navigation serchbar links */}

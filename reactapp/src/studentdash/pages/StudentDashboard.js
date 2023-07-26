@@ -1,8 +1,8 @@
 import React from 'react';
 import CourseCard from '../components/studentdashboard/Courses/CourseCard';
 // import Logo from '../../studentdash/';
-import { Link } from 'react-router-dom';
-import Navbar from '../components/studentdashboard/common/Navbar';
+import VerticalNav from '../components/studentdashboard/common/VerticalNav';
+import Navbar from '../components/studentdashboard/common/Navbar'
 
 const StudentDashboard = () => {
     const courses = [
@@ -57,38 +57,21 @@ const StudentDashboard = () => {
     ];
 
     return (
-        <div className="flex mt-12 bg-white">
-            <Navbar/>
-            {/* Vertical Navbar */}
-            <div className=" text-white bg-gray-800 w-64 ">
-                <ul className="py-4 text-white ">
-                    {/* <img class="w-12 h-12 rounded-full mr-4" src={Logo} alt="" />
-                    <Link to="./" class="w-12 h-12 rounded-full ml-2">
-                        <img src={Logo} alt="Logo" className='logo' />
-                    </Link> */}
-                    <li className="px-4 py-2">
-                        <Link to="/profile" className="navbar-link">Profile</Link>
-                    </li>
-                    <li className="px-4 py-2">
-                        <Link to="/explore" className="navbar-link">Enrolled Courses</Link>
-                    </li>
-                    <li className="px-4 py-2">
-                        <Link to="/quizprogress" className="navbar-link">Quizzes</Link>
-                    </li>
-                    <li className="px-4 py-2">
-                        <Link to="/settings" className="navbar-link">Settings</Link>
-                    </li>
-                </ul>
+        <div>
+            <Navbar></Navbar>
+            <div className="flex">
+                <VerticalNav></VerticalNav>
+                {/* Course List */}
+                <div className="grid grid-cols-1 md:grid-cols-4 my-5 lg:grid-cols-4 gap-4 justify-center items-center">
+                    {courses.map((course) => (
+                        <div className="ml-6">
+                            <CourseCard key={course.id} course={course} />
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            {/* Course List */}
-            <div className="grid grid-cols-1 md:grid-cols-4 my-5 lg:grid-cols-4 gap-4 justify-center items-center">
-                {courses.map((course) => (
-                    <div className="ml-6">
-                        <CourseCard key={course.id} course={course} />
-                    </div>
-                ))}
-            </div>
+
         </div>
     );
 };

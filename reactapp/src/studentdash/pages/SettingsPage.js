@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import Navbar from '../components/studentdashboard/common/Navbar';
+import SettingDetails from './SettingDetails';
+
 
 function SettingPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const profile = {
+    name: 'Shubham Patil',
+    email: 'shubhu244248@gmail.com',
+    Password: 'Shubhu@2000',
+    confirm_Password: '',
   };
 
   const handleNotificationsChange = (event) => {
@@ -19,18 +19,12 @@ function SettingPage() {
 
   return (
     <div>
-      <h2>Many things are remaining for the account settings</h2>
+      <Navbar></Navbar>
+      <div>
 
-      <label type="text-blue-500">
-        Name:
-        <input type="text-blue-500" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </label>
-      <br />
+        <SettingDetails profile={profile} />
+        {/* <ProfileUpdateComponent /> */}
+      </div>
       <label>
         Enable Notifications:
         <input

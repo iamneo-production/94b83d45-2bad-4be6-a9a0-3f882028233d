@@ -4,8 +4,8 @@ import Navbar from '../components/studentdashboard/common/Navbar';
 
 function ExplorePage() {
   return (
-    <div className='mt-12 bg-white'>
-      <Navbar/>
+    <div>
+      <Navbar></Navbar>
       <CourseList></CourseList>
     </div>
   );
