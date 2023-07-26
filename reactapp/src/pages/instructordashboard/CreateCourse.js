@@ -20,7 +20,7 @@ function AddCourse({setIsCreateCourse}) {
     event.preventDefault();
     const postData=async()=>{
     try{
-    await axios.post(`${BASE_URL}courses`, data, {
+    await axios.post(`${BASE_URL}course`, data, {
         headers: {
           'Content-Type': 'application/json'
         }

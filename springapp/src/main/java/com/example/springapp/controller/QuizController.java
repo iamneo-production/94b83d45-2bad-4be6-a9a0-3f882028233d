@@ -15,27 +15,10 @@ import com.example.springapp.model.Quiz;
 
 
 @RestController
-@RequestMapping("/lesson/{lessonId}")
 public class QuizController {
     
     @Autowired
     private QuizService quizService;
-
-    public QuizController(){
-
-    }
-
-    public QuizController(QuizService quizService) {
-        this.quizService = quizService;
-    }
-
-    public QuizService getQuizService() {
-        return quizService;
-    }
-
-    public void setQuizService(QuizService quizService) {
-        this.quizService = quizService;
-    }
 
     @GetMapping("/quizzes")
     public ResponseEntity<?> getAllQuizzes(){
@@ -56,7 +39,6 @@ public class QuizController {
     public ResponseEntity<?> updateQuiz(@PathVariable int quizId, @RequestBody Quiz quiz){
         return quizService.updateQuiz(quizId, quiz);
     }
-
 
     @DeleteMapping("/quizzes/{quizId}")
     public ResponseEntity<?> deleteQuizById(@PathVariable int quizId){

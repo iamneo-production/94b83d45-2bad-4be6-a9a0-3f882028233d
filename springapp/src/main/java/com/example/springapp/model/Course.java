@@ -21,7 +21,7 @@ public class Course {
 
     @OneToMany(mappedBy="course")
     @JsonIgnore
-    //course attribute in Entollment is the owning side of relation ship
+    //course attribute in Enrollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     
 
