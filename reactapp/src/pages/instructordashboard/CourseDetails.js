@@ -75,7 +75,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}courses/${courseId}`)
+        const response = await axios.get(`${BASE_URL}course/${courseId}`)
         setDetails(response.data);
       }
       catch (error) {
