@@ -24,7 +24,6 @@ public class Course {
     //course attribute in Enrollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     
-
     public Course(Long id, String title, String description, Long instructorId) {
         this.id = id;
         this.title = title;
