@@ -15,7 +15,7 @@ const Navbar = () => {
 
         <ul className="navbar-links">
           <li className="navbar-item">
-            <Link to="" className="navbar-link">Home</Link>
+            <Link to="/" className="navbar-link">Home</Link>
           </li>
           <li className="navbar-item">
             <Link to="/studentdashboard" className="navbar-link">My Dashoard</Link>

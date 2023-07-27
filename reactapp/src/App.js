@@ -21,6 +21,7 @@ import ProfilePage from './studentdash/pages/ProfilePage';
 import SettingsPage from './studentdash/pages/SettingsPage';
 import NotFoundPage from './studentdash/pages/NotFoundPage';
 import QuizProgress from './studentdash/pages/QuizProgress';
+import FaQ from './studentdash/components/studentdashboard/common/FaQ'
 // import Navbar from './studentdash/components/studentdashboard/common/Navbar';
 
 
@@ -47,7 +48,8 @@ function App() {
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/quizprogress" element={<QuizProgress />} />
         <Route path="*" element={<NotFoundPage />} />
-        
+        <Route path="/freqaskque" element={<FaQ />} />
+
         <Route path='/catalogue' element={<Main />} />
       </Routes>
     </div>
