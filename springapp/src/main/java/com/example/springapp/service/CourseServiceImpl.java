@@ -6,7 +6,8 @@ import org.springframework.http.ResponseEntity;
 import java.util.*;
 import com.example.springapp.repository.CourseRepository;
 import com.example.springapp.repository.EnrollmentRepository;
-import com.example.springapp.model.Course;
+import com.example.springapp.repository.UserRepository;
+import com.example.springapp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.springapp.exception.*;
@@ -14,6 +15,8 @@ import com.example.springapp.dto.CourseDto;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+    @Autowired
+    UserRepository userRepo;
     @Autowired
     CourseRepository courseRepo;
     @Autowired
@@ -92,4 +95,51 @@ public class CourseServiceImpl implements CourseService {
         return new ResponseEntity<>("Course doesn't exist with course id "+ courseId,HttpStatus.BAD_REQUEST);
 
     }
+    
+
+    public ResponseEntity<?> getCoursesOfUser(Long userId) {
+
+        User user = userRepo.findById(userId).get();
+        if (user == null) {
+            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
+        }
+        List<Enrollment> enrollments = user.getEnrollments();
+        List<CourseDto> result = new ArrayList<>();
+        for (Enrollment enroll : enrollments) {
+            CourseDto course = new CourseDto();
+            Course currCourse = enroll.getCourse();
+            course.setId(currCourse.getId());
+            course.setTitle(currCourse.getTitle());
+            course.setDescription(currCourse.getDescription());
+            course.setInstructorId(currCourse.getInstructorId());
+            result.add(course);
+
+        }
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+
+    }
+
+    public ResponseEntity<?> getUsersEnrolledInACourse(Long courseId) {
+        Optional<Course> course = courseRepo.findById(courseId);
+        if (course.isEmpty()) {
+            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
+        }
+        List<Enrollment> enrollments = course.get().getEnrollments();
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Enrollment enroll : enrollments) {
+            User user = enroll.getUser();
+            Map<String, Object> currUser = new HashMap<>();
+            if (user != null) {
+                currUser.put("id", user.getId());
+                currUser.put("name", user.getFirstName() + " " + user.getLastName());
+                currUser.put("email", user.getEmail());
+                result.add(currUser);
+            }
+        }
+        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+    }
+
+
+
+
 }
