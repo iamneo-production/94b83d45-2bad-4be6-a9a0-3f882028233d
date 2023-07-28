@@ -32,21 +32,7 @@ public class CourseServiceImpl implements CourseService {
         return course;
     }
 
-    private ResponseEntity<?> notFoundResponse() {
-        return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
-    }
-
-    private ResponseEntity<?> successResponse(Object data) {
-        if(data instanceof Course){
-        return new ResponseEntity<>((Course)data, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>((String)data, HttpStatus.OK);
-    }
-
-    private ResponseEntity<?> errorResponse(String message) {
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
-    }
-
+   
     @Override
     public List<CourseDto> cousre() {
         List<Course> courseList = courseRepo.findAll();
@@ -61,17 +47,18 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public ResponseEntity<?> saveCourse(Course course) {
         courseRepo.save(course);
-        return successResponse(course);
+        return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<?> getCourseById(Long courseId) {
         Optional<Course> exist = courseRepo.findById(courseId);
         if (exist.isEmpty()) {
-            return errorResponse("Course does not exist with course id: " + courseId);
+    
+            return new ResponseEntity<>("Course does not exist with course id: " + courseId, HttpStatus.BAD_REQUEST);
         }
         Course currCourse = exist.get();
-        return successResponse(currCourse);
+        return new ResponseEntity<>(currCourse, HttpStatus.CREATED);
     }
 
     @Override
@@ -79,13 +66,15 @@ public class CourseServiceImpl implements CourseService {
     public ResponseEntity<?> delCourseById(Long courseId) {
         Optional<Course> course = courseRepo.findById(courseId);
         if (course.isEmpty()) {
-            return errorResponse("Course not present");
+
+            return new ResponseEntity<>("Course not present", HttpStatus.BAD_REQUEST);
         }
 
         enrollRepo.deleteByCourseId(courseId);
         courseRepo.delete(course.get());
 
-        return successResponse("Course deleted successfully");
+    
+        return new ResponseEntity<>("Course deleted successfully", HttpStatus.CREATED);
     }
 
     @Override
@@ -103,15 +92,17 @@ public class CourseServiceImpl implements CourseService {
                 newCourse.setPrice(course.getPrice());
             }
             courseRepo.save(newCourse);
-            return successResponse("Course Updated Successfully");
+            
+            return new ResponseEntity<>("Course Updated Successfully", HttpStatus.OK);
         }
-        return errorResponse("Course doesn't exist with course id " + courseId);
+        
+        return new ResponseEntity<>("Course does not exist with course id: " + courseId, HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> getCoursesOfUser(Long userId) {
         User user = userRepo.findById(userId).orElse(null);
         if (user == null) {
-            return notFoundResponse();
+            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
         }
         List<Enrollment> enrollments = user.getEnrollments();
         List<CourseDto> result = new ArrayList<>();
@@ -119,13 +110,13 @@ public class CourseServiceImpl implements CourseService {
             CourseDto course = convert(enroll.getCourse());
             result.add(course);
         }
-        return successResponse(result);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<?> getUsersEnrolledInACourse(Long courseId) {
         Optional<Course> course = courseRepo.findById(courseId);
         if (course.isEmpty()) {
-            return notFoundResponse();
+            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
         }
         List<Enrollment> enrollments = course.get().getEnrollments();
         List<Map<String, Object>> result = new ArrayList<>();
@@ -139,6 +130,6 @@ public class CourseServiceImpl implements CourseService {
                 result.add(currUser);
             }
         }
-        return successResponse(result);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
