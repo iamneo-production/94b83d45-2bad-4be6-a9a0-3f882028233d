@@ -21,17 +21,22 @@ public class CourseServiceImpl implements CourseService {
     CourseRepository courseRepo;
     @Autowired
     EnrollmentRepository enrollRepo;
+
+    private CourseDto convert(Course currCourse){
+        CourseDto course = new CourseDto();
+        course.setId(currCourse.getId());
+        course.setTitle(currCourse.getTitle());
+        course.setDescription(currCourse.getDescription());
+        course.setInstructorId(currCourse.getInstructorId());
+        course.setPrice(currCourse.getPrice());
+        return course;
+    }
     
     public List<CourseDto> cousre() {
         List<Course> courseList = courseRepo.findAll();
         List<CourseDto> result = new ArrayList<>();
         for (Course currCourse : courseList) {
-            CourseDto course = new CourseDto();
-            course.setId(currCourse.getId());
-            course.setTitle(currCourse.getTitle());
-            course.setDescription(currCourse.getDescription());
-            course.setInstructorId(currCourse.getInstructorId());
-            course.setPrice(currCourse.getPrice());
+            CourseDto course = convert(currCourse);
             result.add(course);
         }
         return result;
@@ -52,13 +57,8 @@ public class CourseServiceImpl implements CourseService {
             return new ResponseEntity<>("course does not exist with course id: "+" "+ courseId,HttpStatus.BAD_REQUEST);
         }
         Course currCourse=exist.get();
-        CourseDto course = new CourseDto();
-        course.setId(currCourse.getId());
-        course.setTitle(currCourse.getTitle());
-        course.setDescription(currCourse.getDescription());
-        course.setInstructorId(currCourse.getInstructorId());
-        course.setPrice(currCourse.getPrice());
-        return new ResponseEntity<>(course,HttpStatus.OK);
+       
+        return new ResponseEntity<>(currCourse,HttpStatus.OK);
     }
 
     @Override
@@ -106,12 +106,9 @@ public class CourseServiceImpl implements CourseService {
         List<Enrollment> enrollments = user.getEnrollments();
         List<CourseDto> result = new ArrayList<>();
         for (Enrollment enroll : enrollments) {
-            CourseDto course = new CourseDto();
-            Course currCourse = enroll.getCourse();
-            course.setId(currCourse.getId());
-            course.setTitle(currCourse.getTitle());
-            course.setDescription(currCourse.getDescription());
-            course.setInstructorId(currCourse.getInstructorId());
+            
+          
+            CourseDto course = convert(enroll.getCourse());
             result.add(course);
 
         }
