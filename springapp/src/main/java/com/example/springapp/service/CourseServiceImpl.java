@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     EnrollmentRepository enrollRepo;
 
-    private CourseDto convert(Course currCourse){
+    private CourseDto convert(Course currCourse) {
         CourseDto course = new CourseDto();
         course.setId(currCourse.getId());
         course.setTitle(currCourse.getTitle());
@@ -31,7 +31,23 @@ public class CourseServiceImpl implements CourseService {
         course.setPrice(currCourse.getPrice());
         return course;
     }
-    
+
+    private ResponseEntity<?> notFoundResponse() {
+        return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
+    }
+
+    private ResponseEntity<?> successResponse(Object data) {
+        if(data instanceof Course){
+        return new ResponseEntity<>((Course)data, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>((String)data, HttpStatus.OK);
+    }
+
+    private ResponseEntity<?> errorResponse(String message) {
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
     public List<CourseDto> cousre() {
         List<Course> courseList = courseRepo.findAll();
         List<CourseDto> result = new ArrayList<>();
@@ -44,35 +60,32 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public ResponseEntity<?> saveCourse(Course course) {
-       
-            courseRepo.save(course);
-           
-            return new ResponseEntity<>(course, HttpStatus.CREATED);
+        courseRepo.save(course);
+        return successResponse(course);
     }
 
     @Override
     public ResponseEntity<?> getCourseById(Long courseId) {
         Optional<Course> exist = courseRepo.findById(courseId);
-        if(exist.isEmpty()){
-            return new ResponseEntity<>("course does not exist with course id: "+" "+ courseId,HttpStatus.BAD_REQUEST);
+        if (exist.isEmpty()) {
+            return errorResponse("Course does not exist with course id: " + courseId);
         }
-        Course currCourse=exist.get();
-       
-        return new ResponseEntity<>(currCourse,HttpStatus.OK);
+        Course currCourse = exist.get();
+        return successResponse(currCourse);
     }
 
     @Override
     @Transactional
     public ResponseEntity<?> delCourseById(Long courseId) {
-        Optional<Course> course=courseRepo.findById(courseId);
-        if(course.isEmpty()){
-            return new ResponseEntity<>("Course not present",HttpStatus.BAD_REQUEST);
+        Optional<Course> course = courseRepo.findById(courseId);
+        if (course.isEmpty()) {
+            return errorResponse("Course not present");
         }
-        
+
         enrollRepo.deleteByCourseId(courseId);
         courseRepo.delete(course.get());
 
-        return new ResponseEntity<>("Course deleted successfully",HttpStatus.OK);
+        return successResponse("Course deleted successfully");
     }
 
     @Override
@@ -80,63 +93,52 @@ public class CourseServiceImpl implements CourseService {
         Optional<Course> current = courseRepo.findById(courseId);
         if (current.isPresent()) {
             Course newCourse = current.get();
-            if (course.getTitle()!=null && !"".equals(course.getTitle())) {
+            if (course.getTitle() != null && !"".equals(course.getTitle())) {
                 newCourse.setTitle(course.getTitle());
             }
-            if (course.getDescription()!=null && !"".equals(course.getDescription())) {
+            if (course.getDescription() != null && !"".equals(course.getDescription())) {
                 newCourse.setDescription(course.getDescription());
             }
-            if (course.getPrice()>=0) {
+            if (course.getPrice() >= 0) {
                 newCourse.setPrice(course.getPrice());
             }
             courseRepo.save(newCourse);
-            return new ResponseEntity<>("Course Updated Successfully",HttpStatus.OK);
+            return successResponse("Course Updated Successfully");
         }
-        return new ResponseEntity<>("Course doesn't exist with course id "+ courseId,HttpStatus.BAD_REQUEST);
-
+        return errorResponse("Course doesn't exist with course id " + courseId);
     }
-    
 
     public ResponseEntity<?> getCoursesOfUser(Long userId) {
-
-        User user = userRepo.findById(userId).get();
+        User user = userRepo.findById(userId).orElse(null);
         if (user == null) {
-            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
+            return notFoundResponse();
         }
         List<Enrollment> enrollments = user.getEnrollments();
         List<CourseDto> result = new ArrayList<>();
         for (Enrollment enroll : enrollments) {
-            
-          
             CourseDto course = convert(enroll.getCourse());
             result.add(course);
-
         }
-        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
-
+        return successResponse(result);
     }
 
     public ResponseEntity<?> getUsersEnrolledInACourse(Long courseId) {
         Optional<Course> course = courseRepo.findById(courseId);
         if (course.isEmpty()) {
-            return new ResponseEntity<>("Not Found", HttpStatus.BAD_REQUEST);
+            return notFoundResponse();
         }
         List<Enrollment> enrollments = course.get().getEnrollments();
         List<Map<String, Object>> result = new ArrayList<>();
         for (Enrollment enroll : enrollments) {
             User user = enroll.getUser();
-            Map<String, Object> currUser = new HashMap<>();
             if (user != null) {
+                Map<String, Object> currUser = new HashMap<>();
                 currUser.put("id", user.getId());
                 currUser.put("name", user.getFirstName() + " " + user.getLastName());
                 currUser.put("email", user.getEmail());
                 result.add(currUser);
             }
         }
-        return new ResponseEntity<>(result, HttpStatus.ACCEPTED);
+        return successResponse(result);
     }
-
-
-
-
 }
