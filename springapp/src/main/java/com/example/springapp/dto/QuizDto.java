@@ -1,12 +1,10 @@
-package com.example.springapp.model;
+package com.example.springapp.dto;
 
 import javax.persistence.*;
 
-@Entity
-public class Quiz {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class QuizDto {
+
     private Long quizId;
     private Long lessonId;
     private String question;
@@ -16,12 +14,12 @@ public class Quiz {
     private String option4;
     private String answers;
 
-    public Quiz() {
+    public QuizDto() {
 
     }
 
-    public Quiz(Long quizId, Long lessonId, String question, String option1, String option2, String option3, String option4,
-            String answers) {
+    public QuizDto(Long quizId, Long lessonId, String question, String option1, String option2, String option3,
+            String option4, String answers) {
         this.quizId = quizId;
         this.lessonId = lessonId;
         this.question = question;
@@ -31,7 +29,7 @@ public class Quiz {
         this.option4 = option4;
         this.answers = answers;
     }
-    
+
     public Long getQuizId() {
         return quizId;
     }
