@@ -1,2 +1,2 @@
-const BASE_URL = "https://8081-addedebcebbeeddadccddafbcddcbcabfdfafdade.project.examly.io/";
+const BASE_URL = "https://8080-abdcffedaacedadccddafbcddcbcabfdfafdade.project.examly.io/";
 export default BASE_URL;
