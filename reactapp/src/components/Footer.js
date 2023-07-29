@@ -5,7 +5,7 @@ const footer=()=>{
             <div className="top">
                 <div>
                     <h1>Online Learning</h1>
-                    <p>Choos your favourite course</p>
+                    <p>Choose your favourite course</p>
                 </div>
                 <div>
                     <a href="/">
