@@ -1,4 +1,4 @@
-/*import React, { useState , useEffect} from "react";
+import React, { useState , useEffect} from "react";
 import { Courses } from './Card';
 // import contents from './content';
 import "./cataloguestyle.css";
@@ -45,7 +45,7 @@ useEffect(() => {
                 </div>
             </div>
             <div className='cataloguecoursecontainer'>
-            {/* contents.filter(content=>(content.title.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase()))) }
+            {/* contents.filter(content=>(content.title.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))*/ }
                 
                 {contents.filter(content=>(content.title.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))
                 .map((contents) => (
@@ -64,10 +64,10 @@ useEffect(() => {
         </>
     )
 }
-export default Main;*/
+export default Main;
 
 
-
+/*
 import React, { useState } from "react";
 import { Courses } from './Card';
 import "./cataloguestyle.css";
@@ -118,3 +118,4 @@ const Main=()=>{
     )
 }
 export default Main;
+*/
