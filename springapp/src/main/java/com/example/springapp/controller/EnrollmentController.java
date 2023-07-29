@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin("*")
 public class EnrollmentController{
 
     @Autowired

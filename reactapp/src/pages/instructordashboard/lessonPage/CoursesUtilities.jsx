@@ -12,7 +12,12 @@ function CoursesUtilities({course,setUpdateCourse, setThisCourse}) {
     function HandleDelete() {
         const deleteData = async () => {
           try {
-            await axios.delete(`${BASE_URL}courses/${course.id}`)
+            await axios.delete(`${BASE_URL}courses`, {
+                params: {
+                    courseId: course.id
+                }
+              });
+              
             alert("deleted succesfully")
             navigate("/instructor")
           } catch (error) {

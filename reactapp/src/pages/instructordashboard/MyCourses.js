@@ -37,7 +37,7 @@ function MyCourses({setIsCreateCourse,setIsMyCourses}) {
           courses.map((course) => (
             <div className="mycourses-course-card" key={course.id}>
               <h2>{course.title}</h2>
-              <p>{course.id}</p>
+              <p></p>
                 
                 <button onClick={()=>{navigate(`/instructor/courses/${course.id}`);}}
                   className="mycourses-show-button">

@@ -10,4 +10,6 @@ public interface CourseService {
     public ResponseEntity<?> getCourseById(Long courseId);
     public ResponseEntity<?> delCourseById(Long courseId);
     public ResponseEntity<?> updatecourses(Long courseId, Course c);
+    public ResponseEntity<?> getCoursesOfUser(Long userId);
+    public ResponseEntity<?> getUsersEnrolledInACourse(Long courseId);
 }

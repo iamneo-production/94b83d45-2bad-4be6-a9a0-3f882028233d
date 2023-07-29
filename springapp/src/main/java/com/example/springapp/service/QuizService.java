@@ -1,6 +1,7 @@
 package com.example.springapp.service;
 
-
+import java.util.Optional;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,49 +9,81 @@ import com.example.springapp.repository.QuizRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.springapp.model.Quiz;
-
+import com.example.springapp.dto.QuizDto;
 
 @Service
 public class QuizService {
-    
+
     @Autowired
     private QuizRepository quizRepository;
 
-    public ResponseEntity<?> getAllQuizzes(){
-        List<Quiz> list = quizRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(list);
-    }
+    public ResponseEntity<?> getAllQuizzesbyLessonId(Long lessonId) {
+        List<Quiz> quizzes = quizRepository.findByLessonId(lessonId);
+        List<QuizDto> quizzesDtoList = new ArrayList<>();
+        for (Quiz quiz : quizzes) {
+            QuizDto quizDto = new QuizDto();
+            quizDto.setQuizId(quiz.getQuizId());
+            quizDto.setLessonId(quiz.getLessonId());
+            quizDto.setQuestion(quiz.getQuestion());
+            quizDto.setOption1(quiz.getOption1());
+            quizDto.setOption2(quiz.getOption2());
+            quizDto.setOption3(quiz.getOption3());
+            quizDto.setOption4(quiz.getOption4());
+            quizDto.setAnswers(quiz.getAnswers());
 
-    public ResponseEntity<?> getQuizById(int id){
-        Object o = quizRepository.findById(id);
-        if (o != null) {
-            return ResponseEntity.status(HttpStatus.OK).body(o);
+            quizzesDtoList.add(quizDto);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return new ResponseEntity<>(quizzesDtoList, HttpStatus.OK); // working
     }
 
-    public ResponseEntity<?> saveQuiz(Quiz quiz){
-        quizRepository.save(quiz);
-        return ResponseEntity.status(HttpStatus.OK).body(quiz);
-    }
-
-    public ResponseEntity<?> updateQuiz(int id, Quiz quiz){
-        Object o = quizRepository.findById(id);
-        if(o != null){
+    public ResponseEntity<?> saveQuiz(QuizDto quizDto) {
+        Quiz quiz = new Quiz();
+        if (quizDto != null) {
+            quiz.setQuizId(quizDto.getQuizId());
+            quiz.setLessonId(quizDto.getLessonId());
+            quiz.setQuestion(quizDto.getQuestion());
+            quiz.setOption1(quizDto.getOption1());
+            quiz.setOption2(quizDto.getOption2());
+            quiz.setOption3(quizDto.getOption3());
+            quiz.setOption4(quizDto.getOption4());
+            quiz.setAnswers(quizDto.getAnswers());
             quizRepository.save(quiz);
-            return ResponseEntity.status(HttpStatus.OK).body(quiz);
+            String s = "Quiz created Successfully";
+            return new ResponseEntity<>(s, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        String s = "Quiz Not found";
+        return new ResponseEntity<>(s, HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> deleteQuizById(int id){
-        Object o = quizRepository.findById(id);
-        Quiz quiz = (Quiz)o;
-
-        if(quiz != null){
-            quizRepository.delete(quiz);
-            return ResponseEntity.status(HttpStatus.OK).build(); 
+    public ResponseEntity<?> updateQuiz(Long quizId, QuizDto quizDto) {
+        Quiz quiz = new Quiz();
+        Optional<Quiz> quizzes = quizRepository.findById(quizId);
+        if (!quizzes.isEmpty()) {
+            quiz.setQuizId(quizDto.getQuizId());
+            quiz.setLessonId(quizDto.getLessonId());
+            quiz.setQuestion(quizDto.getQuestion());
+            quiz.setOption1(quizDto.getOption1());
+            quiz.setOption2(quizDto.getOption2());
+            quiz.setOption3(quizDto.getOption3());
+            quiz.setOption4(quizDto.getOption4());
+            quiz.setAnswers(quizDto.getAnswers());
+            quizRepository.save(quiz);
+            String s = "Quiz Updated successfully";
+            return new ResponseEntity<>(s, HttpStatus.OK);
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        String s = "Quiz Not Found";
+        return new ResponseEntity(s, HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<?> deleteQuizById(Long quizId) {
+        Optional<Quiz> quizzes = quizRepository.findById(quizId);
+        if (!quizzes.isEmpty()) {
+            quizRepository.delete(quizzes.get());
+            String s = "Quiz deleted successfully";
+            return new ResponseEntity<>(s, HttpStatus.OK);
+        }
+        String s = "Quiz Not Found";
+        return new ResponseEntity(s, HttpStatus.NOT_FOUND);
+
     }
 }

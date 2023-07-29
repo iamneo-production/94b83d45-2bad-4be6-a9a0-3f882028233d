@@ -112,7 +112,7 @@ function CourseDetails() {
           <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button> */}
         {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
-        {enrolledStudents && <EnrolledStudents courseId={details.id}/>}
+        {enrolledStudents && <EnrolledStudents courseId={courseId}/>}
       </div></>
 
   );

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.springapp.service.QuizService;
-import com.example.springapp.model.Quiz;
+import com.example.springapp.dto.QuizDto;
 
 
 @RestController
@@ -20,28 +20,23 @@ public class QuizController {
     @Autowired
     private QuizService quizService;
 
-    @GetMapping("/quizzes")
-    public ResponseEntity<?> getAllQuizzes(){
-        return quizService.getAllQuizzes();
-    }
-
-    @GetMapping("/quizzes/{quizId}")
-    public ResponseEntity<?> getQuiz(@PathVariable int quizId){
-        return quizService.getQuizById(quizId);
+    @GetMapping("/quizzes/{lessonId}")
+    public ResponseEntity<?> getAllQuizzesbyLessonId(@PathVariable Long lessonId){
+        return quizService.getAllQuizzesbyLessonId(lessonId);
     }
 
     @PostMapping("/quizzes")
-    public ResponseEntity<?> saveQuiz(@RequestBody Quiz quiz){
-        return quizService.saveQuiz(quiz);
+    public ResponseEntity<?> saveQuiz(@RequestBody QuizDto quizDto){
+        return quizService.saveQuiz(quizDto);
     }
 
     @PutMapping("/quizzes/{quizId}")
-    public ResponseEntity<?> updateQuiz(@PathVariable int quizId, @RequestBody Quiz quiz){
-        return quizService.updateQuiz(quizId, quiz);
+    public ResponseEntity<?> updateQuiz(@PathVariable Long quizId, @RequestBody QuizDto quizDto){
+        return quizService.updateQuiz(quizId, quizDto);
     }
 
     @DeleteMapping("/quizzes/{quizId}")
-    public ResponseEntity<?> deleteQuizById(@PathVariable int quizId){
+    public ResponseEntity<?> deleteQuizById(@PathVariable Long quizId){
         return quizService.deleteQuizById(quizId);
     }
 
