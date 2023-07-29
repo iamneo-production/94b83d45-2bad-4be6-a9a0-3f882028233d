@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { FaArrowCircleLeft, FaUserCircle } from 'react-icons/fa'
 import Sidebar from './Sidebar'
 import LessonForm from './LessonForm'
-import { Link } from 'react-router-dom'
 import Footer from '../../../lessonPages/Footer'
 import AssignmentsForm from './AssignmentsForm'
 import QuizForm from './QuizForm'
