@@ -1,23 +1,10 @@
-import React, { useState , useEffect} from "react";
+import React, { useState } from "react";
 import { Courses } from './Card';
-// import contents from './content';
+import contents from './content';
 import "./cataloguestyle.css";
-import BASE_URL from '../api/axios';
-import axios from 'axios';
+
+
 const Main=()=>{
-    const [contents,setContent]=useState([]);
-useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}course`);
-        setContent(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-  
-    fetchData();
-  }, []);
     const [query,setQuery]  =useState("");
     return(
         <>
@@ -44,16 +31,14 @@ useEffect(() => {
                 </div>
             </div>
             <div className='cataloguecoursecontainer'>
-            {/* contents.filter(content=>(content.title.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase()))) */}
-                
-                {contents.filter(content=>(content.title.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))
+                {contents.filter(content=>(content.name.toLowerCase().includes(query.toLowerCase()) || content.instructor.toLowerCase().includes(query.toLowerCase()) || content.description.toLowerCase().includes(query.toLowerCase())))
                 .map((contents) => (
                     <Courses
                         key={contents.id}
-                        name={contents.title}
-                        //image={contents.image}
-                        //instructor={contents.instructor}
-                        price={contents.price}
+                        name={contents.name}
+                        image={contents.image}
+                        instructor={contents.instructor}
+                        rating={contents.rating}
                         description={contents.description}
                     
                     />

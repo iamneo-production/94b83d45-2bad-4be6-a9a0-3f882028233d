@@ -1,4 +1,3 @@
-
 const coursesData=[
     {
         id:1,

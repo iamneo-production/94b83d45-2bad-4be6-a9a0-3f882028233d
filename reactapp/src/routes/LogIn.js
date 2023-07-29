@@ -8,8 +8,6 @@ function LogIn() {
     const [email, setEmail] = useState('');
     const [pass,setPwd]=useState('');
 
-    // const [emailerror, setEmailerror] = useState('');
-    // const [passerror,setPwderror]=useState('');
     const [othererror,setOerror]=useState('');
 
     const handleSubmit = async (e) => {
@@ -44,13 +42,13 @@ function LogIn() {
           {othererror && <h1>{othererror}</h1>}
           <form onSubmit={handleSubmit}>
 
-             {/* {emailerror && <h1>{emailerror}</h1>} */}
+             
              <input placeholder="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-             {/* {passerror && <h1>{passerror}</h1>} */}
+            
              <input placeholder="Password" type="pwd" value={pass} onChange={(e) => setPwd(e.target.value)}/>
              
                 <button>LogIN</button>
-                {/* <button onClick={navigateHome}>Sign Up</button> */}
+
     
     
            

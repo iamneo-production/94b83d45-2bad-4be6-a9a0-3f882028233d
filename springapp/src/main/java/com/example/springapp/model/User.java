@@ -14,7 +14,7 @@ public class User{
     private String role;
     @OneToMany( mappedBy="user")
     @JsonIgnore
-    //user attribute in Entollment is the owning side of relation ship
+    //user attribute in Enrollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     public User() {
     }
