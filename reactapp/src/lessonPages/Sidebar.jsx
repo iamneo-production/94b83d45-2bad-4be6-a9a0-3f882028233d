@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 
 const Sidebar = () => {
@@ -9,6 +9,19 @@ const Sidebar = () => {
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
+
+    const [responseData, setResponseData] = useState([])
+    useEffect(() => {
+        fetch("https://8080-acddabbfaeaadadccddafbcddcbcabfdfafdade.project.examly.io/lesson")
+            .then(response => response.json())
+            .then(data => {
+                setResponseData(data);
+                console.log(data);
+            })
+            .catch(error => {
+                console.log("error in Fetching Lesson data", error);
+            });
+    }, [])
 
     return (
         <div>

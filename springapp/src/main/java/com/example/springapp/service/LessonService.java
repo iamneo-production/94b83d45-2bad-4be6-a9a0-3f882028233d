@@ -52,8 +52,8 @@ public class LessonService {
         return new ResponseEntity<>(lessonDtoList, HttpStatus.OK); // working
     }
 
-    public ResponseEntity<?> getLessonById(Long id) {
-        Optional<Lesson> l = lessonRepository.findById(id);
+    public ResponseEntity<?> getLessonById(Long lessonId) {
+        Optional<Lesson> l = lessonRepository.findById(lessonId);
         Lesson lesson = l.get();
         if (lesson != null) {
             LessonDto lessonDto = new LessonDto();
