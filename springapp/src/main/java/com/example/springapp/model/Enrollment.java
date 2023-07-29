@@ -1,7 +1,7 @@
 package com.example.springapp.model;
 
 import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Enrollment {
 
@@ -14,11 +14,11 @@ public class Enrollment {
 
     @Column(name = "course_id")
     private Long courseId;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Course course;
