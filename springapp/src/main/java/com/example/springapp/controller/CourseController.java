@@ -18,12 +18,12 @@ import com.example.springapp.dto.CourseDto;
 import com.example.springapp.service.*;
 
 @RestController
-@CrossOrigin()
-
+@CrossOrigin("*")
 public class CourseController {
     @Autowired
     CourseService courseService;
-
+    @Autowired
+    EnrollmentService enrollmentService;
     @GetMapping("/course")
     public List<CourseDto> getcourses() {
         return courseService.cousre();
@@ -34,9 +34,9 @@ public class CourseController {
         return courseService.saveCourse(course);
     }
 
-    @GetMapping("/course/id")
-    public ResponseEntity<?> courseById(@RequestParam Long courseId) {
-        return courseService.getCourseById(courseId);
+    @GetMapping("/course/{id}")
+    public ResponseEntity<?> courseById(@PathVariable Long id) {
+        return courseService.getCourseById(id);
     }
 
     @DeleteMapping("/courses")
@@ -47,5 +47,17 @@ public class CourseController {
     @PutMapping("/course")
     public ResponseEntity<?> updateCourse(@RequestParam Long courseId, @RequestBody Course course) {
         return courseService.updatecourses(courseId, course);
+    }
+
+    // Get the List of courses for a particular user
+    @GetMapping("/users/{user_id}/enrollments")
+    public ResponseEntity<?> getCoursesOfUser(@PathVariable("user_id") Long userId) {
+        return enrollmentService.getCoursesOfUser(userId);
+    }
+
+    // Get the List Of user erolled in a particular course
+    @GetMapping("/courses/{course_id}/enrollments")
+    public ResponseEntity<?> getUsersEnrolledInACourse(@PathVariable("course_id") Long courseId) {
+        return enrollmentService.getUsersEnrolledInACourse(courseId);
     }
 }

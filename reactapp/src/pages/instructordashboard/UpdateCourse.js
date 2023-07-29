@@ -25,7 +25,8 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
     event.preventDefault();
     const putData=async()=>{
       try{
-      await  axios.put(`${BASE_URL}course/${data.id}`, data,)
+        await axios.put(`${BASE_URL}course/?courseId=${data.id}`, data);
+
       alert("Updated successfully")
       setUpdateCourse(false);
       setThisCourse(true);
