@@ -1,28 +1,31 @@
 package com.example.springapp.dto;
 public class CourseDto {
-    private int id;
+    private Long id;
 
     private String title;
 
     private String description;
 
-    private int instructorId;
+    private Long instructorId;
+
+    private Long price;
 
     public CourseDto() {
     }
 
-    public CourseDto(int id, String title, String description, int instructorId) {
+    public CourseDto(Long id, String title, String description, Long instructorId, Long price) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.instructorId = instructorId;
+        this.price=price;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -42,11 +45,21 @@ public class CourseDto {
         this.description = description;
     }
 
-    public int getInstructorId() {
+    public Long getInstructorId() {
         return instructorId;
     }
 
-    public void setInstructorId(int instructorId) {
+    public void setInstructorId(Long instructorId) {
         this.instructorId = instructorId;
     }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    
 }

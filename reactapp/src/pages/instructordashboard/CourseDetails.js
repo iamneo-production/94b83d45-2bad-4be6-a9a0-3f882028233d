@@ -75,7 +75,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}courses/${courseId}`)
+        const response = await axios.get(`${BASE_URL}course/${courseId}`)
         setDetails(response.data);
       }
       catch (error) {
@@ -112,7 +112,7 @@ function CourseDetails() {
           <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button> */}
         {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
-        {enrolledStudents && <EnrolledStudents courseId={details.id}/>}
+        {enrolledStudents && <EnrolledStudents courseId={courseId}/>}
       </div></>
 
   );

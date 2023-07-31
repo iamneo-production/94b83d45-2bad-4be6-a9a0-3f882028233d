@@ -1,6 +1,4 @@
 import React from 'react'
-import { TbPlus } from 'react-icons/tb'
-import { Link } from 'react-router-dom'
 
 function LessonTable() {
 
