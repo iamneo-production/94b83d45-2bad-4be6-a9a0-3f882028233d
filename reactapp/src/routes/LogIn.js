@@ -18,6 +18,8 @@ function LogIn() {
           localStorage.setItem("userData", JSON.stringify(response.data));
           if (response.data.role==="INSTRUCTOR") {
             navigate("/instructor");
+          } if(response.data.role==="USER") {
+            navigate("/studentdashboard");
           }
         } catch (error) {
           if (error.response && error.response.data) {

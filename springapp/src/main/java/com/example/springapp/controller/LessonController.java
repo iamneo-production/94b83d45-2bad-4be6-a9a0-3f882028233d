@@ -31,10 +31,10 @@ public class LessonController {
         return lessonService.getAllLessons();
     }
 
-    @GetMapping("/lesson/id")
-    public ResponseEntity<?> getLessonById(@RequestParam Long lessonId) {
-        return lessonService.getLessonById(lessonId);
-    }
+    // @GetMapping("/lesson/{lessonId}")
+    // public ResponseEntity<?> getLessonById(@PathVariable Long lessonId) {
+    //     return lessonService.getLessonById(lessonId);
+    // }
 
     @PostMapping("/lesson")
     public ResponseEntity<?> saveLesson(@RequestBody LessonDto lessonDto) {
