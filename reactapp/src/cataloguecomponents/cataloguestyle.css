@@ -214,6 +214,21 @@ html{
 	letter-spacing: 1px;
 }
 
+.back a button{
+    
+    margin-left: 85rem;
+    background:white;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    width: 8rem;
+    
+}
+
+.back a button:hover{
+    color:rgb(231, 54, 216);
+}
+
 
 
 
