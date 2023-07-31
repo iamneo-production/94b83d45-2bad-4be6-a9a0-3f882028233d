@@ -1,21 +1,24 @@
 package com.example.springapp.model;
 import javax.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private String role;
-    @OneToMany(fetch =FetchType.EAGER, mappedBy="user")
-    //user refers the user attribute in the Enrollment entity
+    @OneToMany( mappedBy="user")
+    @JsonIgnore
+    //user attribute in Entollment is the owning side of relation ship
     private List<Enrollment> enrollments;
     public User() {
     }
-    public User(int id, String firstName, String lastName, String email, String password,String role) {
+    public User(Long id, String firstName, String lastName, String email, String password,String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,10 +26,10 @@ public class User{
         this.password = password;
         this.role=role;
     }
-    public int getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getFirstName() {

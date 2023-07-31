@@ -6,12 +6,11 @@ import BASE_URL from '../../api/axios';
 
 function AddCourse({setIsCreateCourse}) {
   const [errormessage,setErrorMessage]=useState("");
-
   const [data, setData] = useState({
-    "id": "",
     "title": "",
     "description": "",
     "instructorId": 923,
+    "price":""
   });
 
   
@@ -20,7 +19,7 @@ function AddCourse({setIsCreateCourse}) {
     event.preventDefault();
     const postData=async()=>{
     try{
-    await axios.post(`${BASE_URL}courses`, data, {
+    await axios.post(`${BASE_URL}course`, data, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -54,7 +53,7 @@ function AddCourse({setIsCreateCourse}) {
         </div>
         
         <form className="createcourse-form-container" onSubmit={Handlecreatecourse}>
-        <div>
+        {/* <div>
           {errormessage && <h3 style={{ color: 'red' }}>{errormessage}</h3>}
             <label>Course Id</label>
             <input
@@ -69,7 +68,7 @@ function AddCourse({setIsCreateCourse}) {
               }
             />
 
-          </div>
+          </div> */}
           <div>
             <label>Course title</label>
             <input
@@ -99,10 +98,24 @@ function AddCourse({setIsCreateCourse}) {
               }
             />
           </div>
+          <div>
+            <label>Price</label>
+            <input
+              type="text"
+              id="price"
+              value={data.price}
+              onChange={(e) =>
+                setData((prevState) => ({
+                  ...prevState,
+                  price: e.target.value,
+                }))
+              }
+            />
+          </div>
 
           <div className="createcourse-buttons-container">
             <div>
-              <button className='{disabled} ' type="submit" disabled={!data.id || !data.title || !data.description}>Submit</button>
+              <button className='{disabled} ' type="submit" disabled={!data.title || !data.description}>Submit</button>
             </div>
             <div>
               <button

@@ -7,13 +7,13 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
 
   
 
-  const [data, setData] = useState({ id: '', title: '', description: '' });
+  const [data, setData] = useState({ id: '', title: '', description: '',price:'' });
 
 
   useEffect(() => {
     const fetchData=async()=>{
       try {
-       const response = await axios.get(`${BASE_URL}courses/${courseId}`)
+       const response = await axios.get(`${BASE_URL}course/${courseId}`)
         setData(response.data);
       }catch(error){
         console.log(error)}
@@ -25,7 +25,8 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
     event.preventDefault();
     const putData=async()=>{
       try{
-      await  axios.put(`${BASE_URL}courses/${data.id}`, data,)
+        await axios.put(`${BASE_URL}course/?courseId=${data.id}`, data);
+
       alert("Updated successfully")
       setUpdateCourse(false);
       setThisCourse(true);
@@ -84,6 +85,21 @@ function UpdateCourse({courseId, setUpdateCourse, setThisCourse}) {
                 setData((prevState) => ({
                   ...prevState,
                   description: e.target.value,
+                }))
+              }
+            />
+          </div>
+
+          <div>
+            <label>Price</label>
+            <input
+              type="text"
+              id="price"
+              value={data.price}
+              onChange={(e) =>
+                setData((prevState) => ({
+                  ...prevState,
+                  price: e.target.value,
                 }))
               }
             />

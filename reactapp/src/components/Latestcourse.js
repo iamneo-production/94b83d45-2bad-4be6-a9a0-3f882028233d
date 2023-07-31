@@ -27,7 +27,7 @@ function Latestcourse() {
                 />
 
             </div>
-            </div>
+        </div>
 
     );
 }

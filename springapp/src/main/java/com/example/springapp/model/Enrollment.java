@@ -1,33 +1,62 @@
 package com.example.springapp.model;
+
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Enrollment {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    @ManyToOne
-    @JoinColumn(name="userId")
-    //column userId is a foreign key refers the primary key in User entity
-    private User user;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "course_id")
+    private Long courseId;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="courseId")
-    //column courseId is a foreign key refers the primary key in Course entity
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Course course;
 
     public Enrollment() {
     }
 
-    public Enrollment(int id, User user, Course course) {
+    public Enrollment(Long id, Long userId, Long courseId) {
         this.id = id;
-        this.user = user;
-        this.course = course;
+        this.userId = userId;
+        this.courseId = courseId;
     }
 
-    public int getId() {
+    // Getters and setters
+
+    public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
+    }
 
     public User getUser() {
         return user;
@@ -44,5 +73,4 @@ public class Enrollment {
     public void setCourse(Course course) {
         this.course = course;
     }
-
 }

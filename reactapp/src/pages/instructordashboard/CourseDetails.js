@@ -9,6 +9,8 @@ import NavBar from './NavBar';
 import UpdateCourse from "./UpdateCourse";
 import BASE_URL from "../../api/axios";
 import SearchBar from './SearchBar';
+import InstructorDashboard from './lessonPage/InstructorDashboard'
+import EnrolledStudents from "./EnrolledStudents";
 import LessonFormMain from "./lessonPage/LessonFormMain";
 const Sidebar = ({ setThisCourse, setlesson, setEnrolledStudents, enrolledStudents, lesson, thiscourse, navigate, setUpdateCourse }) => {
   const [sidebar, setSidebar] = useState(true);
@@ -73,7 +75,7 @@ function CourseDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}courses/${courseId}`)
+        const response = await axios.get(`${BASE_URL}course/${courseId}`)
         setDetails(response.data);
       }
       catch (error) {
@@ -83,24 +85,8 @@ function CourseDetails() {
     fetchData();
   }, [courseId]);
 
-  function HandleDelete() {
-    const deleteData = async () => {
-      try {
-        await axios.delete(`https://8080-abdcffedaacedadccddafbcdeaeaadbdbabf.project.examly.io/courses/${details.id}`)
-        alert("deleted succesfully")
-        setTimeout(() => navigate("/instructor"), 2);
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    deleteData();
-  }
-  function HandleUpdate() {
-    setUpdateCourse(true);
-    setThisCourse(false);
-    setEnrolledStudents(false);
-    setlesson(false);
-  }
+  
+  
 
   return (
     <>
@@ -121,22 +107,12 @@ function CourseDetails() {
       <div className="coursedetails-maincontainer">
 
 
-        {thiscourse &&
-          <div className="coursedetails-detailscontainer">
-            <div>
-              <h1>Course Tile: {details.title}</h1>
-              <h1>Course Id: {details.id}</h1>
-              <p>Course Description: {details.description}</p>
-            </div>
-            <div>
-              <button className="coursedetails-button" onClick={HandleUpdate}>Update Course</button>
-              <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button>
-            </div>
-          </div>}
+        {thiscourse && <InstructorDashboard courses={details} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
+          {/* <button className="coursedetails-button" onClick={HandleUpdate}>Update Course</button>
+          <button className="coursedetails-delbutton" onClick={HandleDelete}>Delete Course</button> */}
         {lesson && <LessonFormMain/>}
         {updatecourse && <UpdateCourse courseId={details.id} setUpdateCourse={setUpdateCourse} setThisCourse={setThisCourse}/>}
-        
-
+        {enrolledStudents && <EnrolledStudents courseId={courseId}/>}
       </div></>
 
   );

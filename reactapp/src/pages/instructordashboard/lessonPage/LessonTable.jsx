@@ -1,6 +1,4 @@
 import React from 'react'
-import { TbPlus } from 'react-icons/tb'
-import { Link } from 'react-router-dom'
 
 function LessonTable() {
 
@@ -8,13 +6,13 @@ function LessonTable() {
 
     return (
         <div className='bg-blue-200 px-4 mx-2 lg:px-14 py-8 my-10 lg:mx-20 rounded-2xl'>
-            <div className='flex justify-between'>
+            {/* <div className='flex justify-between'>
                 <p className="flex text-bold text-base sm:text-lg lg:text-xl font-bold font-sans text-gray-500">Lessons</p>
                 <Link to={"/LessonForm"} className="text-gray-900 bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-500">
                     <TbPlus className='mx-2' />
                     Add New Lesson
                 </Link>
-            </div>
+            </div> */}
             
             <div class="flex justify-start py-8">
                 <table class="w-1/2 border-2 border-collapse text-sm text-left text-gray-500 dark:text-gray-400">

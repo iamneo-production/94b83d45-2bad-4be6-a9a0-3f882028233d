@@ -2,7 +2,7 @@ package com.example.springapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.springapp.model.User;
-import com.example.springapp.repository.UserRepo;
+import com.example.springapp.repository.UserRepository;
 import com.example.springapp.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Service
 public class AuthServiceImpl implements AuthService{
     @Autowired
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -30,7 +30,7 @@ public class AuthServiceImpl implements AuthService{
     @Autowired
     private JwtUtils jwtUtils;
 
-    private String defaultRole="USER";
+ 
 
     public String registerUser(UserRegisterDto userRegisterDto) {
         User user= new User();
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService{
             throw new PasswordNotMatchException("Password and Confirm Password does not Match");
         }
         user.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
-        user.setRole(defaultRole);
+        user.setRole(userRegisterDto.getRole());
 
         Optional<User> existUser= userRepo.findUserByEmail(user.getEmail());
         if(existUser.isEmpty()){
