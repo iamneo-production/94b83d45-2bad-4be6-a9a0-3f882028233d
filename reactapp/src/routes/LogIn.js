@@ -21,6 +21,9 @@ function LogIn() {
           if (response.data.role==="INSTRUCTOR") {
             navigate("/instructor");
           }
+          if (response.data.role==="USER") {
+            navigate("/studentdashboard");
+          }
         } catch (error) {
           if (error.response && error.response.data) {
             const { data } = error.response;
