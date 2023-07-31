@@ -25,14 +25,14 @@ import FaQ from './studentdash/components/studentdashboard/common/FaQ'
 // import MenuAppBar from './studentdash/pages/MenuAppBar';
 
 // import HomePage from './studentdash/pages/HomePage';
-import ExplorePage from './studentdash/pages/ExplorePage';
-import StudentDashboard from './studentdash/pages/StudentDashboard';
-import NotificationPage from './studentdash/pages/NotificationPage';
-import ProfilePage from './studentdash/pages/ProfilePage';
-import SettingsPage from './studentdash/pages/SettingsPage';
-import NotFoundPage from './studentdash/pages/NotFoundPage';
-import QuizProgress from './studentdash/pages/QuizProgress';
-import FaQ from './studentdash/components/studentdashboard/common/FaQ'
+// import ExplorePage from './studentdash/pages/ExplorePage';
+// import StudentDashboard from './studentdash/pages/StudentDashboard';
+// import NotificationPage from './studentdash/pages/NotificationPage';
+// import ProfilePage from './studentdash/pages/ProfilePage';
+// import SettingsPage from './studentdash/pages/SettingsPage';
+// import NotFoundPage from './studentdash/pages/NotFoundPage';
+// import QuizProgress from './studentdash/pages/QuizProgress';
+// import FaQ from './studentdash/components/studentdashboard/common/FaQ'
 // import Navbar from './studentdash/components/studentdashboard/common/Navbar';
 
 
