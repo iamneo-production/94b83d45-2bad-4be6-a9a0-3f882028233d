@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.*;
 import com.example.springapp.dto.*;
 public interface UserService{
-    public Map<String,String> getUserDetails(int id);
-    public ResponseEntity<?> updateUser(UserRegisterDto user, int id);
-    public ResponseEntity<?> deleteUser(int id);
+    public Map<String,String> getUserDetails(Long id);
+    public ResponseEntity<?> updateUser(UserRegisterDto user, Long id);
+    public ResponseEntity<?> deleteUser(Long id);
 }

@@ -24,6 +24,16 @@ import FaQ from './studentdash/components/studentdashboard/common/FaQ'
 // import Navbar from './studentdash/components/studentdashboard/common/Navbar';
 // import MenuAppBar from './studentdash/pages/MenuAppBar';
 
+// import HomePage from './studentdash/pages/HomePage';
+import ExplorePage from './studentdash/pages/ExplorePage';
+import StudentDashboard from './studentdash/pages/StudentDashboard';
+import NotificationPage from './studentdash/pages/NotificationPage';
+import ProfilePage from './studentdash/pages/ProfilePage';
+import SettingsPage from './studentdash/pages/SettingsPage';
+import NotFoundPage from './studentdash/pages/NotFoundPage';
+import QuizProgress from './studentdash/pages/QuizProgress';
+import FaQ from './studentdash/components/studentdashboard/common/FaQ'
+// import Navbar from './studentdash/components/studentdashboard/common/Navbar';
 
 
 function App() {
@@ -48,10 +58,10 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/settings" element={<SettingsPage />} />
         <Route path="/quizprogress" element={<QuizProgress />} />
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="/freqaskque" element={<FaQ />} />
-                    {/* <Route path="/freqaskque" element={<Accordion />} /> */}
-                    {/* <Route path="/appbar" element={<MenuAppBar />} /> */}
-                    <Route path="*" element={<NotFoundPage />} />
+
+        <Route path='/catalogue' element={<Main />} />
       </Routes>
     </div>
   );

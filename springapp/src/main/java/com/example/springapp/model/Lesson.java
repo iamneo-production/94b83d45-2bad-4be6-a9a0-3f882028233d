@@ -6,35 +6,31 @@ import javax.persistence.*;
 public class Lesson {
 
     @Id 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String title;
 
     private String description;
 
-    private int courseId;
-
-    @ManyToOne
-    private Course c;
+    private Long courseId;
 
     public Lesson(){
 
     }
 
-    public Lesson(int id, String title, String description, int courseId, Course c) {
+    public Lesson(Long id, String title, String description, Long courseId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.courseId = courseId;
-        this.c = c;
     }
 
-    public int getId() {
+    public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -54,20 +50,12 @@ public class Lesson {
 		this.description = description;
 	}
 
-	public int getCourseId() {
+	public Long getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(int courseId) {
+	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
-	}
-
-	public Course getCourse() {
-		return c;
-	}
-
-	public void setCourse(Course c) {
-		this.c = c;
 	}
 
 }

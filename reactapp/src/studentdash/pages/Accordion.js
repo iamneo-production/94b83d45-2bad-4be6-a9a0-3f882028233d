@@ -4,7 +4,6 @@ const Accordion = () => {
     const [active, setActive] = useState(false);
 
     const handleToggle = () => {
-        // event.preventDefault();
         setActive(!active);
     };
 

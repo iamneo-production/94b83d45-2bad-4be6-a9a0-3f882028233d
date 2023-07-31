@@ -15,30 +15,45 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin("*")
 public class EnrollmentController{
 
     @Autowired
     private EnrollmentService enrollmentService;
     //Enroll a new user
-    @PostMapping("/courses/{course_id}/enrollments")
-    public ResponseEntity<String> enrollUser(@PathVariable("course_id") int courseId, @RequestParam("userId") int userId ){
-        return enrollmentService.enrollUser(userId, courseId);
-    }
-    //Get the List of courses for a particular user
-    @GetMapping("/users/{user_id}/enrollments")
-    public ResponseEntity<?> getCoursesOfUser(@PathVariable("user_id") int userId){
-            return enrollmentService.getCoursesOfUser(userId);
-        }
-    //Get the List Of user erolled in a particular course
-    @GetMapping("/courses/{course_id}/enrollments")
-    public ResponseEntity<?> getUsersEnrolledInACourse(@PathVariable("course_id") int courseId){
-        return enrollmentService.getUsersEnrolledInACourse(courseId);
+    @PostMapping("/enrollment")
+
+    public ResponseEntity<String> enrollUser(@RequestBody Enrollment enrollment){
+        return enrollmentService.enrollUser(enrollment);
     }
 
-    @DeleteMapping("/courses/{course_id}/enrollments/{user_id}")
-    public ResponseEntity<?> deleteEnrollment(@PathVariable("course_id") int courseId, @PathVariable("user_id") int userId) {
-        return enrollmentService.deleteEnrollment(courseId,userId);
+
+   
+
+    
+    
+
+    @DeleteMapping("/enrollments")
+    public ResponseEntity<?> deleteEnrollment(@RequestParam Long id){
+        
+        return enrollmentService.deleteEnrollment(id);
     }
+    
+    
+    //Get the List of courses for a particular user
+    @GetMapping("/enrollments")
+    public ResponseEntity<?> getCoursesOfUser(@RequestParam Long userId){
+            return enrollmentService.getCoursesOfUser(userId);
+    }
+    
+    @GetMapping("/enrollment")
+    public ResponseEntity<?> getEnrollments(){
+        return enrollmentService.getEnrollments();
+    }
+
+    @GetMapping("/enrollment/id")
+    public ResponseEntity<?> getEnrollmentById(@RequestParam Long id){
+        return enrollmentService.getEnrollmentById(id);
+}
     
 }

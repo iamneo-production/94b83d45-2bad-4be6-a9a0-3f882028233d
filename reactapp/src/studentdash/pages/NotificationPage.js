@@ -10,10 +10,12 @@
 
 // export default NotificationPage;
 import React from "react";
+import Navbar from "../components/studentdashboard/common/Navbar";
 
 const NotificationPage = () => {
   return (
     <div>
+      <Navbar></Navbar>
       <div className="flex w-full rounded-lg border-l-[6px] border-warning bg-warning bg-opacity-[15%] px-7 py-8 shadow-md md:p-9">
         <div className="mr-5 flex h-9 w-full max-w-[36px] items-center justify-center rounded-lg bg-warning bg-opacity-30">
           <svg

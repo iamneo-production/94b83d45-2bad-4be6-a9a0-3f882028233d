@@ -21,7 +21,7 @@ const VerticalNav = () => {
                     <Link to="/explore" className="navbar-link">Enrolled Courses</Link>
                 </li>
                 <li className="px-4 py-2">
-                    <Link to="/quizprogress" className="navbar-link">Quizzes</Link>
+                    <Link to="/quizprogress" className="navbar-link">Quizzes and Assignments</Link>
                 </li>
                 <li className="px-4 py-2">
                     <Link to="/settings" className="navbar-link">Settings</Link>

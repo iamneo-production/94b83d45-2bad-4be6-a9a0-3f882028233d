@@ -1,5 +1,6 @@
 import React from 'react';
 import ProfileDetailsComponent from './ProfileDetailsComponent';
+import Navbar from '../components/studentdashboard/common/Navbar';
 
 const ProfilePage = () => {
   const profile = {
@@ -9,7 +10,8 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <h1>Profile Page</h1>
+      <Navbar></Navbar>
+
       <ProfileDetailsComponent profile={profile} />
       {/* <ProfileUpdateComponent /> */}
     </div>
